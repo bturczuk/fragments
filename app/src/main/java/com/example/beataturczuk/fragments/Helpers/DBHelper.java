@@ -1,5 +1,6 @@
 package com.example.beataturczuk.fragments.Helpers;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -18,7 +19,6 @@ public class DBHelper extends SQLiteOpenHelper {
     public DBHelper(Context context) {
         super(context, CommandData.DB_NAME, null, CommandData.DATABASE_VERSION);
     }
-
 
     private static final String DATABASE_CREATE = "create table " +
             CommandData.TABLE_NAME + "(" + CommandData.PRODUCT_COLUMN_ID

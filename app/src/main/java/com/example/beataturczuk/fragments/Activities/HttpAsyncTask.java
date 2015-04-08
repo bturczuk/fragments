@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.view.View;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -25,16 +26,18 @@ import com.example.beataturczuk.fragments.R;
 public class HttpAsyncTask extends AsyncTask<String, String, String> {
 
 
-    public HttpAsyncTask(Activity activity, Context context) {
+    public HttpAsyncTask(Activity activity, Context context, TextView textView) {
         this.activity = activity;
         this.context = context;
-        mydb = new DBHelper(activity);
+        this.mTextView = textView;
+        mydb = new DBHelper(context);
     }
 
 
     private Activity activity;
     private DBHelper mydb;
     private Context context;
+    private TextView mTextView;
 
     //checking if you have internet connection
     @Override
@@ -76,7 +79,8 @@ public class HttpAsyncTask extends AsyncTask<String, String, String> {
 
                     mydb.insertData(body, author);
 
-                    ((TextView) activity.findViewById(R.id.etResponse)).setText(str);
+
+                    mTextView.setText(str);
 
                 } catch (JSONException e) {
                     e.printStackTrace();

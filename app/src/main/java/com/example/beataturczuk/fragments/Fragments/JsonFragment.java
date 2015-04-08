@@ -2,8 +2,6 @@ package com.example.beataturczuk.fragments.Fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,24 +18,22 @@ import com.example.beataturczuk.fragments.R;
  */
 public class JsonFragment extends Fragment {
 
-    Activity activity = getActivity();
-    HttpAsyncTask httpAsyncTask = new HttpAsyncTask(activity, getActivity());
-
-
+    private Activity activity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
 
-        //FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        //fragmentTransaction.add(R.id.fragment_container, null);
-        //fragmentTransaction.commit();
 
         View rootView = inflater.inflate(R.layout.fragment, container, false);
 
+        HttpAsyncTask httpAsyncTask = new HttpAsyncTask(activity, getActivity(), (TextView) rootView.findViewById(R.id.etResponse));
 
         httpAsyncTask.execute(CommandData.URL_ADDRESS);
+
+
+
         return rootView;
     }
 
