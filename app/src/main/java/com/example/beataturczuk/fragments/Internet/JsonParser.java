@@ -24,7 +24,7 @@ import java.net.URL;
 /**
  * Created by beataturczuk on 26.03.15.
  */
-public class JsonParser {
+public final class JsonParser {
     private JsonParser() {
 
     }
@@ -35,7 +35,6 @@ public class JsonParser {
         InputStream inputStream = null;
         String result = "";
         try {
-
 
             HttpParams params = new BasicHttpParams();
             HttpConnectionParams.setConnectionTimeout(params, CommandData.TIMEOUT);

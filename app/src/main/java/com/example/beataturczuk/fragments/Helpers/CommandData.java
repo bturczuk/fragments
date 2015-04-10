@@ -25,7 +25,4 @@ public final class CommandData {
     public static final String PRODUCT_MESSAGE = "body";
     public static final String PRODUCT_AUTHOR = "author";
 
-
-
-
 }

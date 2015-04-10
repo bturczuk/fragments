@@ -13,21 +13,22 @@ import com.example.beataturczuk.fragments.R;
 
 public class MainActivity extends Activity {
 
-    private Activity activity;
-    private DBHelper mydb;
+    private Activity mActivity;
+    private DBHelper mMydb;
 
-    public MainActivity() {}
+    public MainActivity() { }
 
-    public MainActivity (Activity activity) {
-        this.activity = activity;
+    public MainActivity(Activity activity) {
+        this.mActivity = activity;
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
            setContentView(R.layout.activity_main);
 
-        mydb = new DBHelper(this);
-        mydb.getWritableDatabase();
+        mMydb = new DBHelper(this);
+        mMydb.getWritableDatabase();
 
         JsonFragment jsonFragment = new JsonFragment();
 
@@ -37,8 +38,5 @@ public class MainActivity extends Activity {
         fragmentTransaction.add(R.id.fragment_container, jsonFragment);
 
         fragmentTransaction.commit();
-
-        // call AsynTask to perform network operation on separate thread
-
     }
 }

@@ -1,6 +1,5 @@
 package com.example.beataturczuk.fragments.Helpers;
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;

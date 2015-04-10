@@ -18,25 +18,27 @@ import com.example.beataturczuk.fragments.R;
  */
 public class JsonFragment extends Fragment {
 
-    private Activity activity;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    private Activity mActivity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
 
-
         View rootView = inflater.inflate(R.layout.fragment, container, false);
 
-        HttpAsyncTask httpAsyncTask = new HttpAsyncTask(activity, getActivity(), (TextView) rootView.findViewById(R.id.etResponse));
+        HttpAsyncTask httpAsyncTask = new HttpAsyncTask(mActivity, getActivity(), (TextView) rootView.findViewById(R.id.etResponse));
 
         httpAsyncTask.execute(CommandData.URL_ADDRESS);
 
-
-
         return rootView;
     }
-
 }
 
 
