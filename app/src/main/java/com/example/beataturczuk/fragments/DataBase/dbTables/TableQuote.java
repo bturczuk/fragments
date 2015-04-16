@@ -11,34 +11,53 @@ import android.util.Log;
 /**
  * Created by beataturczuk on 10.04.15.
  */
-public class TableQuote extends SQLiteOpenHelper {
+public class TableQuote {
 
     private Context mContext;
 
-    public TableQuote(Context context) {
-        super(context, ApplicationConstants.ApiQuoteKeys.DB_NAME, null, ApplicationConstants.ApiQuoteKeys.DATABASE_VERSION);
-        this.mContext = context;
-    }
-
-    public static final String DATABASE_CREATE = "create table " +
-            ApplicationConstants.ApiQuoteKeys.TABLE_NAME + "(" + ApplicationConstants.ApiQuoteKeys.PRODUCT_COLUMN_ID
-            + " integer primary key autoincrement, "
-            + ApplicationConstants.ApiQuoteKeys.PRODUCT_MESSAGE + " text not null, "
-            + ApplicationConstants.ApiQuoteKeys.PRODUCT_AUTHOR + " text not null); ";
+    public static final String TABLE_NAME = "quote";
+    public static final String  COLUMN_ID = "_id"; // (z podkresleniem nazywamy id w bazie, bez podkreslenia id zewnetrzne)
+    public static final String COLUMN_AUTHOR = "author";
+    public static final String COLUMN_BODY = "body";
 
 
-    @Override
-    public void onCreate(SQLiteDatabase db) {
+//    public TableQuote(Context context) {
+//        super(context, ApplicationConstants.ApiQuoteKeys.DB_NAME, null, ApplicationConstants.ApiQuoteKeys.DATABASE_VERSION);
+//        this.mContext = context;
+//    }
+
+    public static final String DATABASE_CREATE = " create table " +
+            TABLE_NAME
+            + "("
+            + COLUMN_ID + " integer primary key autoincrement, "
+            + COLUMN_BODY + " text not null, "
+            + COLUMN_AUTHOR + " text not null"
+            + "); ";
+
+    //Zawsze tzreba też wstrzyknac puste dane:
+
+    public static final String INSERT_BLANK_QUOTE= "insert into " +
+            TABLE_NAME
+            + "("
+            + COLUMN_BODY
+            + ","
+            + COLUMN_AUTHOR
+            + ")"
+            + " values "
+            + "('','')";
+
+
+    public static void onCreate(SQLiteDatabase db) {
         db.execSQL(DATABASE_CREATE);
+        db.execSQL(INSERT_BLANK_QUOTE);
     }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public static void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.w(DbHelper.class.getName(),
                 "Upgrading database from version " + oldVersion +
                         " to " + newVersion + ", which will destroy all old data"
         );
-        db.execSQL("DROP TABLE IF EXIST " + ApplicationConstants.ApiQuoteKeys.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXIST " + TABLE_NAME);
         onCreate(db);
     }
 

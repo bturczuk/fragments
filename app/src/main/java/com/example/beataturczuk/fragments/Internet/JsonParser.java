@@ -38,7 +38,7 @@ public final class JsonParser {
         try {
 
             HttpParams params = new BasicHttpParams();
-            HttpConnectionParams.setConnectionTimeout(params, ApplicationConstants.ApiQuoteKeys.TIMEOUT);
+            HttpConnectionParams.setConnectionTimeout(params, CommandData.TIMEOUT);
 
             URL connectURL = new URL(CommandData.URL_ADDRESS);
             HttpURLConnection conn = (HttpURLConnection) connectURL.openConnection();
@@ -78,7 +78,7 @@ public final class JsonParser {
 
     private static String convertInputStreamToString(InputStream inputStream) throws IOException {
 
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"), ApplicationConstants.ApiQuoteKeys.NUMOFDIGITS);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"), CommandData.NUMOFDIGITS);
         String line;
         String result = "";
         while ((line = bufferedReader.readLine()) != null) {

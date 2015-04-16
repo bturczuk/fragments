@@ -12,15 +12,16 @@ import java.sql.SQLException;
  */
 public class DbManage {
 
+    private  DbHelper dbHelper;
+    private  SQLiteDatabase database;
+    private Quote quote;
+
     private Context context;
 
     public DbManage(Context context) {
-        this.context = context;
+       //inicjowanie :)
+       dbHelper = new DbHelper(context);
     }
-
-    private static DbHelper dbHelper;
-    private static SQLiteDatabase database;
-    private Quote quote;
 
 
     public Quote getQuote() {
@@ -31,7 +32,7 @@ public class DbManage {
         this.quote = quote;
     }
 
-    public void open() throws SQLException {
+    public void open(){
            database = dbHelper.getWritableDatabase();
        }
 

@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.beataturczuk.fragments.DataBase.dbTables.TableQuote;
 import com.example.beataturczuk.fragments.Helpers.ApplicationConstants;
+import com.example.beataturczuk.fragments.Helpers.CommandData;
 
 
 /**
@@ -14,28 +15,20 @@ import com.example.beataturczuk.fragments.Helpers.ApplicationConstants;
  */
 public class DbHelper extends SQLiteOpenHelper {
 
-
-
-    private Context context;
-    private TableQuote tableQuote = new TableQuote(this.context);
-
     public DbHelper(Context context) {
-        super(context, ApplicationConstants.ApiQuoteKeys.DB_NAME, null, ApplicationConstants.ApiQuoteKeys.DATABASE_VERSION);
-        this.context = context;
+        super(context, CommandData.DB_NAME, null, CommandData.DATABASE_VERSION);
     }
 
     public void onCreate(SQLiteDatabase db) {
-        tableQuote.onCreate(db);
+        TableQuote.onCreate(db);
 
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            tableQuote.onUpgrade(db, oldVersion, newVersion);
+        TableQuote.onUpgrade(db, oldVersion, newVersion);
     }
 
     public void cleanDatabase(SQLiteDatabase db) {
-        tableQuote.onUpgrade(db, db.getVersion(), db.getVersion());
+        TableQuote.onUpgrade(db, db.getVersion(), db.getVersion());
     }
-
-
 }

@@ -17,17 +17,8 @@ import java.sql.SQLException;
 
 public class MainActivity extends Activity {
 
-    private Activity mActivity;
     private DbHelper mMydb;
-    private Context mContext;
-   private DbManage mDbManage;
-
-    public MainActivity() { }
-
-    public MainActivity(Activity activity, Context context) {
-        this.mActivity = activity;
-        this.mContext = context;
-    }
+    private DbManage mDbManage;
 
 
     @Override
@@ -36,14 +27,10 @@ public class MainActivity extends Activity {
            setContentView(R.layout.activity_main);
 
 
-        mMydb = new DbHelper(mContext);
-        mDbManage = new DbManage(mContext);
+        mMydb = new DbHelper(getApplicationContext());
+        mDbManage = new DbManage(getApplicationContext());
 
-        try {
-            mDbManage.open();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        mDbManage.open();
 
 
         JsonFragment jsonFragment = new JsonFragment();

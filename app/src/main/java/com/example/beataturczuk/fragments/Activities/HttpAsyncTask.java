@@ -44,7 +44,7 @@ public class HttpAsyncTask extends AsyncTask<String, String, String> {
     //checking if you have internet connection
     @Override
     protected void onPreExecute() {
-        CommandData.networkConnection();
+        CommandData.networkConnection(mContext, mActivity);
     }
 
     @Override
