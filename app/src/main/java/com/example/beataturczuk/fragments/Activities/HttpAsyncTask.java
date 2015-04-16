@@ -9,10 +9,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.example.beataturczuk.fragments.DataBase.DbHelper;
+import com.example.beataturczuk.fragments.DataBase.dbTables.TableQuote;
+import com.example.beataturczuk.fragments.Helpers.ApplicationConstants;
 import com.example.beataturczuk.fragments.Helpers.CommandData;
-import com.example.beataturczuk.fragments.Helpers.DBHelper;
 import com.example.beataturczuk.fragments.Internet.JsonParser;
-import com.example.beataturczuk.fragments.Internet.NetworkConnection;
 
 
 /**
@@ -23,26 +24,20 @@ public class HttpAsyncTask extends AsyncTask<String, String, String> {
 
     public HttpAsyncTask(Activity activity, Context context, TextView textView) {
         this.mActivity = activity;
-        this.mContext = context;
         this.mTextView = textView;
-        mMydb = new DBHelper(context);
+        mMydb = new DbHelper(context);
     }
 
-
+    private TableQuote mTableQuote;
     private Activity mActivity;
-    private DBHelper mMydb;
-    private Context mContext;
+    private DbHelper mMydb;
     private TextView mTextView;
+    private Context mContext;
 
     //checking if you have internet connection
     @Override
     protected void onPreExecute() {
-
-        if (!NetworkConnection.networkStatus(mContext)) {
-            NetworkConnection.noNetworkDialog(mActivity);
-        } else {
-            return;
-        }
+        CommandData.networkConnection();
     }
 
     @Override
@@ -58,7 +53,7 @@ public class HttpAsyncTask extends AsyncTask<String, String, String> {
 
         try {
             JSONObject json = new JSONObject(result);
-            JSONArray articles = json.getJSONArray(CommandData.PRODUCTS);
+            JSONArray articles = json.getJSONArray(ApplicationConstants.ApiQuoteKeys.PRODUCTS);
 
             String str;
             String body;
@@ -68,8 +63,8 @@ public class HttpAsyncTask extends AsyncTask<String, String, String> {
             for (int i = 0; i < articles.length(); i++) {
                 try {
                     JSONObject jObject = articles.getJSONObject(i);
-                    body = jObject.getString(CommandData.BODY).toString();
-                    author = jObject.getString(CommandData.AUTHOR).toString();
+                    body = jObject.getString(ApplicationConstants.ApiQuoteKeys.BODY).toString();
+                    author = jObject.getString(ApplicationConstants.ApiQuoteKeys.AUTHOR).toString();
                     str = "MESSAGE: " + body + "\n\nAUTHOR: " + author;
 
                     mMydb.insertData(body, author);

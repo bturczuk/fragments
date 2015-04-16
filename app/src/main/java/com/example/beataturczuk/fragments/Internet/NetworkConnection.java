@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.example.beataturczuk.fragments.Helpers.CommandData;
+import com.example.beataturczuk.fragments.Helpers.ApplicationConstants;
 
 /**
  * Created by beataturczuk on 26.03.15.
@@ -53,15 +53,15 @@ public final class NetworkConnection {
 
     public static void noNetworkDialog(final Activity activity) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setMessage(CommandData.NO_CONNECTION_MESSAGE)
+        builder.setMessage(ApplicationConstants.ApiQuoteKeys.NO_CONNECTION_MESSAGE)
                 .setCancelable(false)
-                .setPositiveButton(CommandData.EXIT_BUTTON, new DialogInterface.OnClickListener() {
+                .setPositiveButton(ApplicationConstants.ApiQuoteKeys.EXIT_BUTTON, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                         activity.finish();
                     }
                 })
-                .setNegativeButton(CommandData.REFRESH_BUTTON, new DialogInterface.OnClickListener() {
+                .setNegativeButton(ApplicationConstants.ApiQuoteKeys.REFRESH_BUTTON, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent intent = activity.getIntent();
                         activity.finish();
