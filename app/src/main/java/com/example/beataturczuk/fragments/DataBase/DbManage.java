@@ -18,7 +18,6 @@ public class DbManage {
         this.context = context;
     }
 
-
     private static DbHelper dbHelper;
     private static SQLiteDatabase database;
     private Quote quote;
@@ -32,7 +31,7 @@ public class DbManage {
         this.quote = quote;
     }
 
-    public static void open() throws SQLException {
+    public void open() throws SQLException {
            database = dbHelper.getWritableDatabase();
        }
 

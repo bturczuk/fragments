@@ -21,6 +21,7 @@ public class MainActivity extends Activity {
     private DbHelper mMydb;
     private Context mContext;
    private DbManage mDbManage;
+
     public MainActivity() { }
 
     public MainActivity(Activity activity, Context context) {
@@ -37,7 +38,7 @@ public class MainActivity extends Activity {
 
         mMydb = new DbHelper(mContext);
         mDbManage = new DbManage(mContext);
-        mMydb.getWritableDatabase();
+
         try {
             mDbManage.open();
         } catch (SQLException e) {

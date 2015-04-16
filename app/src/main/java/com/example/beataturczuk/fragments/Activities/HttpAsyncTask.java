@@ -10,10 +10,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.beataturczuk.fragments.DataBase.DbHelper;
+import com.example.beataturczuk.fragments.DataBase.DbManage;
 import com.example.beataturczuk.fragments.DataBase.dbTables.TableQuote;
 import com.example.beataturczuk.fragments.Helpers.ApplicationConstants;
 import com.example.beataturczuk.fragments.Helpers.CommandData;
 import com.example.beataturczuk.fragments.Internet.JsonParser;
+
+import java.sql.SQLException;
 
 
 /**
@@ -26,6 +29,7 @@ public class HttpAsyncTask extends AsyncTask<String, String, String> {
         this.mActivity = activity;
         this.mTextView = textView;
         mMydb = new DbHelper(context);
+        mDbManage = new DbManage(context);
     }
 
     private TableQuote mTableQuote;
@@ -33,6 +37,8 @@ public class HttpAsyncTask extends AsyncTask<String, String, String> {
     private DbHelper mMydb;
     private TextView mTextView;
     private Context mContext;
+    private DbManage mDbManage;
+
 
     //checking if you have internet connection
     @Override
@@ -44,6 +50,14 @@ public class HttpAsyncTask extends AsyncTask<String, String, String> {
     protected String doInBackground(String... urls) {
 
         return JsonParser.httpGetRequest(urls[0]);
+
+        try {
+            DbManage.open();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 
@@ -67,7 +81,7 @@ public class HttpAsyncTask extends AsyncTask<String, String, String> {
                     author = jObject.getString(ApplicationConstants.ApiQuoteKeys.AUTHOR).toString();
                     str = "MESSAGE: " + body + "\n\nAUTHOR: " + author;
 
-                    mMydb.insertData(body, author);
+
 
                     mTextView.setText(str);
 

@@ -37,11 +37,5 @@ public class DbHelper extends SQLiteOpenHelper {
         tableQuote.onUpgrade(db, db.getVersion(), db.getVersion());
     }
 
-    public void insertData(String body, String author) {
-        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(ApplicationConstants.ApiQuoteKeys.PRODUCT_MESSAGE, body);
-        values.put(ApplicationConstants.ApiQuoteKeys.PRODUCT_AUTHOR, author);
-        sqLiteDatabase.insert("products", null, values);
-    }
+
 }
