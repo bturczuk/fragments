@@ -28,6 +28,7 @@ public class HttpAsyncTask extends AsyncTask<String, String, String> {
     public HttpAsyncTask(Activity activity, Context context, TextView textView) {
         this.mActivity = activity;
         this.mTextView = textView;
+        this.mContext = context;
         mMydb = new DbHelper(context);
         mDbManage = new DbManage(context);
     }
@@ -48,14 +49,7 @@ public class HttpAsyncTask extends AsyncTask<String, String, String> {
 
     @Override
     protected String doInBackground(String... urls) {
-
         return JsonParser.httpGetRequest(urls[0]);
-
-        try {
-            DbManage.open();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
 
     }
