@@ -20,7 +20,7 @@ public final class CommandData {
     public static final String URL_ADDRESS = "http://lfc.pl/app/webroot/get_quote.php";
 
     //viewPager Strings;
-    public static final int NUM_PAGES = 2;
+    public static final int NUM_PAGES = 5;
 
 
     public static void networkConnection(Context mContext, Activity mActivity) {

@@ -3,10 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/fragment_container">
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true">
+
+    <!--<ScrollView-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentTop="true">-->
 
        <!-- <fragment
             android:layout_width="match_parent"
@@ -16,7 +17,7 @@
             android:layout_gravity="left|top"
             tools:layout="@layout/fragment" />
 !-->
-    </ScrollView>
+    <!--</ScrollView>-->
 
 
 

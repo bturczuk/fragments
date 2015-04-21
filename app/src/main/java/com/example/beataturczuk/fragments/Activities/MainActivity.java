@@ -1,9 +1,9 @@
 package com.example.beataturczuk.fragments.Activities;
 
 import android.app.Activity;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
+
+
 
 
 import com.example.beataturczuk.fragments.DataBase.DbHelper;
@@ -29,16 +29,5 @@ public class MainActivity extends Activity {
         mDbManage = new DbManage(getApplicationContext());
 
         mDbManage.open();
-
-
-        JsonFragment jsonFragment = new JsonFragment();
-
-
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.layout.activity_main, jsonFragment);
-
-
-        fragmentTransaction.commit();
     }
 }
