@@ -3,7 +3,6 @@ package com.example.beataturczuk.fragments.Activities;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.os.Bundle;
 
 
@@ -12,13 +11,12 @@ import com.example.beataturczuk.fragments.DataBase.DbManage;
 import com.example.beataturczuk.fragments.Fragments.JsonFragment;
 import com.example.beataturczuk.fragments.R;
 
-import java.sql.SQLException;
-
 
 public class MainActivity extends Activity {
 
     private DbHelper mMydb;
     private DbManage mDbManage;
+    ScreenSlidePage slidePagerActivity;
 
 
     @Override
@@ -38,7 +36,8 @@ public class MainActivity extends Activity {
 
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fragment_container, jsonFragment);
+        fragmentTransaction.add(R.layout.activity_main, jsonFragment);
+
 
         fragmentTransaction.commit();
     }

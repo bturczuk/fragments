@@ -10,7 +10,7 @@ public final class CommandData {
 
     //Database Strings:
     public static final String DB_NAME = "MyDBName.db";
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 1;
 
     //JSON Parser settings:
     public static final int TIMEOUT = 300;
@@ -18,6 +18,9 @@ public final class CommandData {
 
     //only url adresses and simple functions
     public static final String URL_ADDRESS = "http://lfc.pl/app/webroot/get_quote.php";
+
+    //viewPager Strings;
+    public static final int NUM_PAGES = 2;
 
 
     public static void networkConnection(Context mContext, Activity mActivity) {
