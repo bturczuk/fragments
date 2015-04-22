@@ -18,6 +18,7 @@ public final class CommandData {
 
     //only url adresses and simple functions
     public static final String URL_ADDRESS = "http://lfc.pl/app/webroot/get_quote.php";
+    public static final String NEWS_URL_ADDRESS = "http://www.lfc.pl/app/webroot/get_posts.php?call=1&first=0";
 
     //viewPager Strings;
     public static final int NUM_PAGES = 5;

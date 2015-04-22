@@ -49,11 +49,8 @@ public class HttpAsyncTask extends AsyncTask<String, String, String> {
 
     @Override
     protected String doInBackground(String... urls) {
-        return JsonParser.httpGetRequest(urls[0]);
-
-
+        return JsonParser.httpGetRequest(CommandData.URL_ADDRESS);
     }
-
 
     // onPostExecute displays the results of the AsyncTask.
     @Override
@@ -75,15 +72,12 @@ public class HttpAsyncTask extends AsyncTask<String, String, String> {
                     author = jObject.getString(ApplicationConstants.ApiQuoteKeys.AUTHOR).toString();
                     str = "MESSAGE: " + body + "\n\nAUTHOR: " + author;
 
-
-
                     mTextView.setText(str);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-
         } catch (JSONException e) {
             e.printStackTrace();
         }

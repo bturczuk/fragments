@@ -40,13 +40,14 @@ public final class JsonParser {
             HttpParams params = new BasicHttpParams();
             HttpConnectionParams.setConnectionTimeout(params, CommandData.TIMEOUT);
 
-            URL connectURL = new URL(CommandData.URL_ADDRESS);
+            URL connectURL = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) connectURL.openConnection();
             String request = conn.getRequestMethod().toString();
 
+
             if (request.equals("GET")) {
                 HttpClient httpclient = new DefaultHttpClient(params);
-                URI website = new URI(CommandData.URL_ADDRESS);
+                URI website = new URI(url);
                 HttpGet httpGet = new HttpGet();
                 httpGet.setURI(website);
                 HttpResponse httpResponse = httpclient.execute(httpGet);

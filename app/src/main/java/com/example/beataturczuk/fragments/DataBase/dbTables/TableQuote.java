@@ -16,15 +16,9 @@ public class TableQuote {
     private Context mContext;
 
     public static final String TABLE_NAME = "quote";
-    public static final String  COLUMN_ID = "_id"; // (z podkresleniem nazywamy id w bazie, bez podkreslenia id zewnetrzne)
+    public static final String COLUMN_ID = "_id"; // (z podkresleniem nazywamy id w bazie, bez podkreslenia id zewnetrzne)
     public static final String COLUMN_AUTHOR = "author";
     public static final String COLUMN_BODY = "body";
-
-
-//    public TableQuote(Context context) {
-//        super(context, ApplicationConstants.ApiQuoteKeys.DB_NAME, null, ApplicationConstants.ApiQuoteKeys.DATABASE_VERSION);
-//        this.mContext = context;
-//    }
 
     public static final String DATABASE_CREATE = " create table " +
             TABLE_NAME

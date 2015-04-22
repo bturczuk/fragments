@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 
 
 import com.example.beataturczuk.fragments.Fragments.JsonFragment;
+import com.example.beataturczuk.fragments.Fragments.NewsFragment;
 import com.example.beataturczuk.fragments.Helpers.CommandData;
 import com.example.beataturczuk.fragments.R;
 
@@ -45,8 +46,6 @@ public class ScreenSlidePage extends FragmentActivity {
             mPager.setCurrentItem(mPager.getCurrentItem() - 1);
         }
     }
-
-
     /**
      * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in
      * sequence.
@@ -58,7 +57,7 @@ public class ScreenSlidePage extends FragmentActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return new JsonFragment();
+            return new NewsFragment();
         }
 
         @Override

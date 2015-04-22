@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/news"
+    android:weightSum="1">
+
+
+    <ScrollView
+        android:layout_width="304dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+
+
+        <TextView
+            android:background="#ACE1AF"
+            android:id="@+id/nius"
+            android:inputType="textMultiLine"
+            android:layout_marginLeft="23px"
+            android:layout_marginBottom="20px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="false"
+            android:textSize="45px"
+            />
+    </ScrollView>
+</LinearLayout>
