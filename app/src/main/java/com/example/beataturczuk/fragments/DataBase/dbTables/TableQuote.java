@@ -2,7 +2,9 @@ package com.example.beataturczuk.fragments.DataBase.dbTables;
 
 import com.example.beataturczuk.fragments.DataBase.DbHelper;
 import com.example.beataturczuk.fragments.Helpers.ApplicationConstants;
+import com.example.beataturczuk.fragments.Helpers.CommandData;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -54,6 +56,4 @@ public class TableQuote {
         db.execSQL("DROP TABLE IF EXIST " + TABLE_NAME);
         onCreate(db);
     }
-
-
 }

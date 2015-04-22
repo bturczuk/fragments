@@ -1,6 +1,7 @@
 package com.example.beataturczuk.fragments.DataBase;
 
 //import android.content.ContentValues;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -21,8 +22,8 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     public void onCreate(SQLiteDatabase db) {
-        TableQuote.onCreate(db);
         TableNews.onCreate(db);
+        TableQuote.onCreate(db);
 
     }
 
@@ -34,5 +35,12 @@ public class DbHelper extends SQLiteOpenHelper {
     public void cleanDatabase(SQLiteDatabase db) {
         TableQuote.onUpgrade(db, db.getVersion(), db.getVersion());
         TableNews.onUpgrade(db, db.getVersion(), db.getVersion());
+    }
+    public void insertData(String body, String author) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(ApplicationConstants.ApiQuoteKeys.BODY, body);
+        values.put(ApplicationConstants.ApiQuoteKeys.AUTHOR, author);
+        sqLiteDatabase.insert("products", null, values);
     }
 }

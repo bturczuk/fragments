@@ -59,11 +59,7 @@ public final class JsonParser {
 
                 HttpPost httpPost = new HttpPost(url);
                 httpPost.addHeader("Content-Type", "application/json; charset=UTF-8");
-
             }
-
-
-
             // convert inputstream to string
             if (inputStream != null) {
                 result = convertInputStreamToString(inputStream);

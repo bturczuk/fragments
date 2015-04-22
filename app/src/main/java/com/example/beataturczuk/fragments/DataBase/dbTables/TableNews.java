@@ -41,14 +41,14 @@ public class TableNews {
             TABLE_NAME
             + "("
             + COLUMN_ID + " integer primary key autoincrement, "
-            + COLUMN_TYPE + " text not null, "
-            + COLUMN_CREATED + " text not null, "
-            + COLUMN_PUBLISHED + " text not null, "
-            + COLUMN_USER_ID+ " text not null, "
-            + COLUMN_SOURCE + " text not null, "
-            + COLUMN_IMAGE + " text not null, "
-            + COLUMN_TITLE + " text not null, "
-            + COLUMN_BODY + " text not null"
+            + COLUMN_TYPE + "text not null, "
+            + COLUMN_CREATED + "text not null, "
+            + COLUMN_PUBLISHED + "text not null, "
+            + COLUMN_USER_ID+ "text not null, "
+            + COLUMN_SOURCE + "text not null, "
+            + COLUMN_IMAGE + "text not null, "
+            + COLUMN_TITLE + "text not null, "
+            + COLUMN_BODY + "text not null"
             + "); ";
 
     public static final String INSERT_BLANK_NEWS= "insert into " +

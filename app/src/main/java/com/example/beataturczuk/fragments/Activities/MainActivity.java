@@ -26,8 +26,9 @@ public class MainActivity extends Activity {
 
 
         mMydb = new DbHelper(getApplicationContext());
-        mMydb.getWritableDatabase();
+        //mMydb.getWritableDatabase();
         mDbManage = new DbManage(getApplicationContext());
+
         mDbManage.open();
 
     }
