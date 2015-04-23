@@ -44,7 +44,7 @@ public class NewsAsyncTask extends AsyncTask<String, String, String> {
 
     @Override
     protected String doInBackground(String... urls) {
-        return JsonParser.httpGetRequest(urls[1]);
+        return JsonParser.httpGetRequest(CommandData.NEWS_URL_ADDRESS);
     }
 
     @Override
