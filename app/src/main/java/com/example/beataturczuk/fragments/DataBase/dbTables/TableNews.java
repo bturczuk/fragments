@@ -27,10 +27,11 @@ public class TableNews {
     private Context mContext;
 
     public static final String TABLE_NAME = "news";
-    public static final String COLUMN_ID = "_id"; // (z podkresleniem nazywamy id w bazie, bez podkreslenia id zewnetrzne)
+    public static final String COLUMN_ID = "column_id"; // (z podkresleniem nazywamy id w bazie, bez podkreslenia id zewnetrzne)
     public static final String COLUMN_TYPE = "type";
     public static final String COLUMN_CREATED = "created";
     public static final String COLUMN_PUBLISHED = "published";
+    public static final String COLUMN_COMMENT_COUNT = "comment_count";
     public static final String COLUMN_USER_ID = "user_id";
     public static final String COLUMN_SOURCE = "source";
     public static final String COLUMN_IMAGE = "image";
@@ -41,14 +42,15 @@ public class TableNews {
             TABLE_NAME
             + "("
             + COLUMN_ID + " integer primary key autoincrement, "
-            + COLUMN_TYPE + "text, "
-            + COLUMN_CREATED + "text not null, "
-            + COLUMN_PUBLISHED + "text not null, "
-            + COLUMN_USER_ID+ "text not null, "
-            + COLUMN_SOURCE + "text not null, "
-            + COLUMN_IMAGE + "text not null, "
-            + COLUMN_TITLE + "text not null, "
-            + COLUMN_BODY + "text not null"
+            + COLUMN_TYPE + " text, "
+            + COLUMN_CREATED + " text not null, "
+            + COLUMN_PUBLISHED + " text not null, "
+            + COLUMN_COMMENT_COUNT + " text, "
+            + COLUMN_USER_ID+ " text not null, "
+            + COLUMN_SOURCE + " text not null, "
+            + COLUMN_IMAGE + " text not null, "
+            + COLUMN_TITLE + " text not null, "
+            + COLUMN_BODY + " text not null"
             + "); ";
 
     public static final String INSERT_BLANK_NEWS= "insert into " +
@@ -59,6 +61,8 @@ public class TableNews {
             + COLUMN_CREATED
             + ","
             + COLUMN_PUBLISHED
+            + ","
+            + COLUMN_COMMENT_COUNT
             + ","
             + COLUMN_USER_ID
             + ","
@@ -71,7 +75,7 @@ public class TableNews {
             + COLUMN_BODY
             + ")"
             + " values "
-            + "('','','','','','','','')";
+            + "('','','','','','','','','');";
 
 
     public static void onCreate(SQLiteDatabase db) {
@@ -84,8 +88,7 @@ public class TableNews {
                 "Upgrading database from version " + oldVersion +
                         " to " + newVersion + ", which will destroy all old data"
         );
-        db.execSQL("DROP TABLE IF EXIST " + TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
-
 }

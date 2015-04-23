@@ -40,7 +40,7 @@ public class TableQuote {
             + COLUMN_AUTHOR
             + ")"
             + " values "
-            + "('','')";
+            + "('','');";
 
 
     public static void onCreate(SQLiteDatabase db) {
@@ -53,7 +53,7 @@ public class TableQuote {
                 "Upgrading database from version " + oldVersion +
                         " to " + newVersion + ", which will destroy all old data"
         );
-        db.execSQL("DROP TABLE IF EXIST " + TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
 }

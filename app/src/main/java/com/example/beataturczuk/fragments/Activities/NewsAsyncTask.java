@@ -59,6 +59,7 @@ public class NewsAsyncTask extends AsyncTask<String, String, String> {
             String type;
             String created;
             String published;
+            String comment_count;
             String user_id;
             String source;
             String image;
@@ -73,6 +74,7 @@ public class NewsAsyncTask extends AsyncTask<String, String, String> {
                     type = jObject.getString(ApplicationConstants.NewsConstants.TYPE).toString();
                     created = jObject.getString(ApplicationConstants.NewsConstants.CREATED).toString();
                     published = jObject.getString(ApplicationConstants.NewsConstants.PUBLISHED).toString();
+                    comment_count = jObject.getString(ApplicationConstants.NewsConstants.COMMENT_COUNT).toString();
                     user_id = jObject.getString(ApplicationConstants.NewsConstants.USER_ID).toString();
                     source = jObject.getString(ApplicationConstants.NewsConstants.SOURCE).toString();
                     image = jObject.getString(ApplicationConstants.NewsConstants.IMAGE).toString();
