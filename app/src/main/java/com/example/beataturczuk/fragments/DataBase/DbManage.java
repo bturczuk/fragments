@@ -1,9 +1,11 @@
 package com.example.beataturczuk.fragments.DataBase;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.beataturczuk.fragments.DataBase.dbObjects.Quote;
+import com.example.beataturczuk.fragments.DataBase.dbTables.TableQuote;
 
 import java.sql.SQLException;
 
@@ -42,5 +44,17 @@ public class DbManage {
 
     public void cleanDB() {
         dbHelper.cleanDatabase(database);
+
+
+    }
+    public void setQuote(ContentValues mContentValues) {
+        try {
+            database.update(
+                    TableQuote.TABLE_NAME,
+                    mContentValues, null, null
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

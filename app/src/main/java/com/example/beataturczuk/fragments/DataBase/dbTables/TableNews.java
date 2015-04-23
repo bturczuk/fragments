@@ -41,7 +41,7 @@ public class TableNews {
             TABLE_NAME
             + "("
             + COLUMN_ID + " integer primary key autoincrement, "
-            + COLUMN_TYPE + "text not null, "
+            + COLUMN_TYPE + "text, "
             + COLUMN_CREATED + "text not null, "
             + COLUMN_PUBLISHED + "text not null, "
             + COLUMN_USER_ID+ "text not null, "
@@ -54,8 +54,6 @@ public class TableNews {
     public static final String INSERT_BLANK_NEWS= "insert into " +
             TABLE_NAME
             + "("
-            + COLUMN_ID
-            + ","
             + COLUMN_TYPE
             + ","
             + COLUMN_CREATED
@@ -73,7 +71,7 @@ public class TableNews {
             + COLUMN_BODY
             + ")"
             + " values "
-            + "('','','','','','','','','')";
+            + "('','','','','','','','')";
 
 
     public static void onCreate(SQLiteDatabase db) {

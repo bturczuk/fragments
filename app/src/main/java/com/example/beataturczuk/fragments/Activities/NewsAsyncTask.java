@@ -81,6 +81,7 @@ public class NewsAsyncTask extends AsyncTask<String, String, String> {
 
                     nius = "TITLE:" + title + "\n NEWS: " + body + "\n PUBLISHED: " + published;
 
+
                     mTextView.setText(nius);
 
                 } catch (JSONException e) {

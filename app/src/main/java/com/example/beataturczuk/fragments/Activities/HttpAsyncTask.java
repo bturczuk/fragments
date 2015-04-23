@@ -1,6 +1,7 @@
 package com.example.beataturczuk.fragments.Activities;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.TextView;
@@ -72,8 +73,15 @@ public class HttpAsyncTask extends AsyncTask<String, String, String> {
                     author = jObject.getString(ApplicationConstants.ApiQuoteKeys.AUTHOR).toString();
                     str = "MESSAGE: " + body + "\n\nAUTHOR: " + author;
 
+                    mDbManage.open();
+                    ContentValues mContentValues = new ContentValues();
+                    mContentValues.put(TableQuote.COLUMN_AUTHOR, author);
+                    mContentValues.put(TableQuote.COLUMN_BODY, body);
+                    mDbManage.setQuote(mContentValues);
+
                     mTextView.setText(str);
 
+                    mDbManage.close();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
