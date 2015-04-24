@@ -19,16 +19,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Created by beataturczuk on 22.04.15.
+ * Created by beataturczuk on 23.04.15.
  */
-public class NewsAsyncTask extends AsyncTask<String, String, String> {
+public class GetNewsAsyncTask extends AsyncTask <String, String, String>{
 
-    public NewsAsyncTask(Activity activity, Context context, TextView textView) {
+
+    public GetNewsAsyncTask(Activity activity, Context context, TextView textView) {
         this.mActivity = activity;
         this.mTextView = textView;
         this.mContext = context;
         mMydb = new DbHelper(context);
         mDbManage = new DbManage(context);
+        //mContentValues = new ContentValues();
+
     }
 
     private TableQuote mTableQuote;
@@ -38,19 +41,22 @@ public class NewsAsyncTask extends AsyncTask<String, String, String> {
     private Context mContext;
     private DbManage mDbManage;
 
-
     @Override
     protected void onPreExecute() {
         CommandData.networkConnection(mContext, mActivity);
     }
 
+
     @Override
     protected String doInBackground(String... urls) {
-        return JsonParser.httpGetRequest(CommandData.NEWS_URL_ADDRESS);
+        //return JsonParser.httpGetRequest(CommandData.NEWS_URL_ADDRESS);
+        return "";
+
     }
 
     @Override
     protected void onPostExecute(String result) {
+
 
         try {
             JSONObject json = new JSONObject(result);
@@ -68,25 +74,31 @@ public class NewsAsyncTask extends AsyncTask<String, String, String> {
             String body;
 
 
+
             for (int i = 0; i < news.length(); i++) {
                 try {
                     JSONObject jObject = news.getJSONObject(i);
-                    type = jObject.getString(ApplicationConstants.NewsConstants.TYPE).toString();
-                    created = jObject.getString(ApplicationConstants.NewsConstants.CREATED).toString();
-                    published = jObject.getString(ApplicationConstants.NewsConstants.PUBLISHED).toString();
-                    comment_count = jObject.getString(ApplicationConstants.NewsConstants.COMMENT_COUNT).toString();
-                    user_id = jObject.getString(ApplicationConstants.NewsConstants.USER_ID).toString();
-                    source = jObject.getString(ApplicationConstants.NewsConstants.SOURCE).toString();
-                    image = jObject.getString(ApplicationConstants.NewsConstants.IMAGE).toString();
-                    title = jObject.getString(ApplicationConstants.NewsConstants.TITLE).toString();
-                    body = jObject.getString(ApplicationConstants.NewsConstants.BODY).toString();
+                    type = jObject.getString(ApplicationConstants.NewsConstants.TYPE);
+                    created = jObject.getString(ApplicationConstants.NewsConstants.CREATED);
+                    published = jObject.getString(ApplicationConstants.NewsConstants.PUBLISHED);
+                    comment_count = jObject.getString(ApplicationConstants.NewsConstants.COMMENT_COUNT);
+                    user_id = jObject.getString(ApplicationConstants.NewsConstants.USER_ID);
+                    source = jObject.getString(ApplicationConstants.NewsConstants.SOURCE);
+                    image = jObject.getString(ApplicationConstants.NewsConstants.IMAGE);
+                    title = jObject.getString(ApplicationConstants.NewsConstants.TITLE);
+                    body = jObject.getString(ApplicationConstants.NewsConstants.BODY);
 
-                    nius = "TITLE:" + title + "\n NEWS: " + body + "\n PUBLISHED: " + published;
+                    ContentValues mContentValues = new ContentValues();
+                    mContentValues.get(type);
+                    mContentValues.get(created);
+                    mContentValues.get(published);
+                    mContentValues.get(comment_count);
+                    mContentValues.get(user_id);
+                    mContentValues.get(source);
+                    mContentValues.get(image);
+                    mContentValues.get(title);
+                    mContentValues.get(body);
 
-                    mDbManage.open();
-
-                    mTextView.setText(nius);
-                    mDbManage.close();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
