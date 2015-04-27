@@ -4,7 +4,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.beataturczuk.fragments.Activities.GetNewsAsyncTask;
 import com.example.beataturczuk.fragments.DataBase.dbObjects.Quote;
+import com.example.beataturczuk.fragments.DataBase.dbTables.TableNews;
 import com.example.beataturczuk.fragments.DataBase.dbTables.TableQuote;
 
 import java.sql.SQLException;
@@ -17,6 +19,7 @@ public class DbManage {
     private  DbHelper dbHelper;
     private  SQLiteDatabase database;
     private Quote quote;
+    private ContentValues mContentValues;
 
     private Context context;
 
@@ -44,8 +47,6 @@ public class DbManage {
 
     public void cleanDB() {
         dbHelper.cleanDatabase(database);
-
-
     }
     public void setQuote(ContentValues mContentValues) {
         try {
@@ -57,4 +58,12 @@ public class DbManage {
             e.printStackTrace();
         }
     }
+
+    //public void addNews() {
+        //database.insert(TableQuote.TABLE_NAME, null, mContentValues);
+       // database.insert(TableNews.TABLE_NAME, null, mContentValues);
+    //}
+
+
+
 }

@@ -1,5 +1,6 @@
 package com.example.beataturczuk.fragments.Activities;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
@@ -21,7 +22,7 @@ import org.json.JSONObject;
 /**
  * Created by beataturczuk on 23.04.15.
  */
-public class GetNewsAsyncTask extends AsyncTask <String, String, String>{
+public class GetNewsAsyncTask extends AsyncTask <String, String, String> {
 
 
     public GetNewsAsyncTask(Activity activity, Context context, TextView textView) {
@@ -30,7 +31,7 @@ public class GetNewsAsyncTask extends AsyncTask <String, String, String>{
         this.mContext = context;
         mMydb = new DbHelper(context);
         mDbManage = new DbManage(context);
-        //mContentValues = new ContentValues();
+        mContentValues = new ContentValues();
 
     }
 
@@ -40,6 +41,7 @@ public class GetNewsAsyncTask extends AsyncTask <String, String, String>{
     private TextView mTextView;
     private Context mContext;
     private DbManage mDbManage;
+    private ContentValues mContentValues;
 
     @Override
     protected void onPreExecute() {
@@ -48,18 +50,10 @@ public class GetNewsAsyncTask extends AsyncTask <String, String, String>{
 
 
     @Override
-    protected String doInBackground(String... urls) {
-        //return JsonParser.httpGetRequest(CommandData.NEWS_URL_ADDRESS);
-        return "";
-
-    }
-
-    @Override
-    protected void onPostExecute(String result) {
-
-
+    protected String doInBackground(String... result) {
+        //return JsonParser.httpGetRequest(CommandData.NEWS_URL_ADDRESS)
         try {
-            JSONObject json = new JSONObject(result);
+            JSONObject json = new JSONObject(String.valueOf(result));
             JSONArray news = json.getJSONArray(ApplicationConstants.NewsConstants.PRODUCTS);
 
             String nius;
@@ -72,7 +66,6 @@ public class GetNewsAsyncTask extends AsyncTask <String, String, String>{
             String image;
             String title;
             String body;
-
 
 
             for (int i = 0; i < news.length(); i++) {
@@ -89,15 +82,15 @@ public class GetNewsAsyncTask extends AsyncTask <String, String, String>{
                     body = jObject.getString(ApplicationConstants.NewsConstants.BODY);
 
                     ContentValues mContentValues = new ContentValues();
-                    mContentValues.get(type);
-                    mContentValues.get(created);
-                    mContentValues.get(published);
-                    mContentValues.get(comment_count);
-                    mContentValues.get(user_id);
-                    mContentValues.get(source);
-                    mContentValues.get(image);
-                    mContentValues.get(title);
-                    mContentValues.get(body);
+                    mContentValues.put(TableNews.COLUMN_TYPE, type);
+                    mContentValues.put(TableNews.COLUMN_CREATED, created);
+                    mContentValues.put(TableNews.COLUMN_PUBLISHED, published);
+                    mContentValues.put(TableNews.COLUMN_COMMENT_COUNT, comment_count);
+                    mContentValues.put(TableNews.COLUMN_USER_ID, user_id);
+                    mContentValues.put(TableNews.COLUMN_SOURCE, source);
+                    mContentValues.put(TableNews.COLUMN_IMAGE, image);
+                    mContentValues.put(TableNews.COLUMN_TITLE, title);
+                    mContentValues.put(TableNews.COLUMN_BODY, body);
 
 
                 } catch (JSONException e) {
@@ -107,5 +100,14 @@ public class GetNewsAsyncTask extends AsyncTask <String, String, String>{
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        return "";
+    }
+
+    @Override
+    protected void onPostExecute(String mContentValues) {
+
+        mDbManage.open();
+        mDbManage.close();
+
     }
 }

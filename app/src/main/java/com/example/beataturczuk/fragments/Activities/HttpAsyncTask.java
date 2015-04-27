@@ -74,13 +74,8 @@ public class HttpAsyncTask extends AsyncTask<String, String, String> {
                     str = "MESSAGE: " + body + "\n\nAUTHOR: " + author;
 
                     mDbManage.open();
-                    ContentValues mContentValues = new ContentValues();
-                    mContentValues.put(TableQuote.COLUMN_AUTHOR, author);
-                    mContentValues.put(TableQuote.COLUMN_BODY, body);
-                    mDbManage.setQuote(mContentValues);
-
+                    mMydb.insertData(author, body);
                     mTextView.setText(str);
-
                     mDbManage.close();
                 } catch (JSONException e) {
                     e.printStackTrace();

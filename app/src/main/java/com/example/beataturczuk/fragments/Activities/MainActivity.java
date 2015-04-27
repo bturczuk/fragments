@@ -8,7 +8,10 @@ import android.os.Bundle;
 
 import com.example.beataturczuk.fragments.DataBase.DbHelper;
 import com.example.beataturczuk.fragments.DataBase.DbManage;
+import com.example.beataturczuk.fragments.DataBase.dbObjects.Quote;
+import com.example.beataturczuk.fragments.DataBase.dbTables.TableQuote;
 import com.example.beataturczuk.fragments.Fragments.JsonFragment;
+import com.example.beataturczuk.fragments.Helpers.CommandData;
 import com.example.beataturczuk.fragments.R;
 
 
@@ -26,7 +29,6 @@ public class MainActivity extends Activity {
 
 
         mMydb = new DbHelper(getApplicationContext());
-       // mMydb.getWritableDatabase();
         mDbManage = new DbManage(getApplicationContext());
         mDbManage.open();
         mDbManage.close();
