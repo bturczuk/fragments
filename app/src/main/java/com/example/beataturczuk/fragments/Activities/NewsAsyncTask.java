@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.example.beataturczuk.fragments.DataBase.DbHelper;
@@ -17,6 +18,8 @@ import com.example.beataturczuk.fragments.Internet.JsonParser;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.TreeSet;
 
 /**
  * Created by beataturczuk on 22.04.15.
@@ -55,6 +58,7 @@ public class NewsAsyncTask extends AsyncTask<String, String, String> {
         try {
             JSONObject json = new JSONObject(result);
             JSONArray news = json.getJSONArray(ApplicationConstants.NewsConstants.PRODUCTS);
+            Log.d("dodalem!!!!", "" + news.toString());
 
             String nius;
             String type;
@@ -82,9 +86,21 @@ public class NewsAsyncTask extends AsyncTask<String, String, String> {
                     body = jObject.getString(ApplicationConstants.NewsConstants.BODY).toString();
 
                     nius = "TITLE:" + title + "\n NEWS: " + body + "\n PUBLISHED: " + published;
+                    Log.d("dodalem!!!!", nius);
+
+                    ContentValues mContentValues = new ContentValues();
+                    mContentValues.put(TableNews.COLUMN_TYPE, type);
+                    mContentValues.put(TableNews.COLUMN_CREATED, created);
+                    mContentValues.put(TableNews.COLUMN_PUBLISHED, published);
+                    mContentValues.put(TableNews.COLUMN_COMMENT_COUNT, comment_count);
+                    mContentValues.put(TableNews.COLUMN_USER_ID, user_id);
+                    mContentValues.put(TableNews.COLUMN_SOURCE, source);
+                    mContentValues.put(TableNews.COLUMN_IMAGE, image);
+                    mContentValues.put(TableNews.COLUMN_TITLE, title);
+                    mContentValues.put(TableNews.COLUMN_BODY, body);
 
                     mDbManage.open();
-
+                    mDbManage.setNews(mContentValues);
                     mTextView.setText(nius);
                     mDbManage.close();
 

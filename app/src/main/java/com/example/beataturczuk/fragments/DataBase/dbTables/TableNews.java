@@ -1,11 +1,13 @@
 package com.example.beataturczuk.fragments.DataBase.dbTables;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.example.beataturczuk.fragments.DataBase.DbHelper;
+import com.example.beataturczuk.fragments.DataBase.dbObjects.News;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,8 @@ public class TableNews {
 
     private SQLiteDatabase database;
     private Context mContext;
+    private ContentValues mContentValues;
+
 
     public static final String TABLE_NAME = "news";
     public static final String COLUMN_ID = "column_id"; // (z podkresleniem nazywamy id w bazie, bez podkreslenia id zewnetrzne)

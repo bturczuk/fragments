@@ -57,7 +57,12 @@ public class ScreenSlidePage extends FragmentActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return new NewsFragment();
+            if(position==1){
+                return new JsonFragment();
+            } else {
+                return new NewsFragment();
+
+            }
         }
 
         @Override
