@@ -1,24 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="6dip">
-
-    <TextView
-        android:id="@+id/newsTitle"
-        android:layout_width="fill_parent"
-        android:layout_height="26dip"
-        android:singleLine="true"
-        android:textSize="12sp"
-        android:background="#C8A2C8"
-        android:layout_alignParentTop="true"
-        />
-
-    <TextView
-        android:id="@+id/newsBody"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textSize="10sp"
-        android:background="#FFC0CB"
-        />
-</RelativeLayout>
+    android:padding="6dip"
+    android:background="#666699"
+    android:id="@+id/android:list"
+    />

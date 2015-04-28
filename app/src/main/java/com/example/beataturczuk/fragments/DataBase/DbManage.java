@@ -98,38 +98,22 @@ public class DbManage {
                 null,
                 null
         );
-        if(mCursor.moveToFirst()) {
-                new News(
-                       mCursor.getString(0),
-                       mCursor.getString(1),
-                       mCursor.getString(2),
-                       mCursor.getString(3),
-                       mCursor.getString(4),
-                       mCursor.getString(5),
-                       mCursor.getString(6),
-                       mCursor.getString(7),
-                       mCursor.getString(8),
-                        mCursor.getString(9)
-               );
+        if (mCursor.moveToFirst()) {
+            new News(
+                    mCursor.getString(0),
+                    mCursor.getString(1),
+                    mCursor.getString(2),
+                    mCursor.getString(3),
+                    mCursor.getString(4),
+                    mCursor.getString(5),
+                    mCursor.getString(6),
+                    mCursor.getString(7),
+                    mCursor.getString(8),
+                    mCursor.getString(9)
+            );
             mCursor.moveToFirst();
         }
         mCursor.close();
         return news;
     }
-
-
-   /** public String[] news = new String[] {
-            mContentValues.get(TableNews.COLUMN_ID, id),
-            mContentValues.get(TableNews.COLUMN_TITLE, title),
-            mContentValues.get(TableNews.COLUMN_BODY, body);
-    };
-   **/
-
-    //public void addNews() {
-        //database.insert(TableQuote.TABLE_NAME, null, mContentValues);
-       // database.insert(TableNews.TABLE_NAME, null, mContentValues);
-    //}
-
-
-
 }

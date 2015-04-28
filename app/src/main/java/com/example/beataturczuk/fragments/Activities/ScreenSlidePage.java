@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 
 
 import com.example.beataturczuk.fragments.Fragments.JsonFragment;
+import com.example.beataturczuk.fragments.Fragments.MyListFragment;
 import com.example.beataturczuk.fragments.Fragments.NewsFragment;
 import com.example.beataturczuk.fragments.Helpers.CommandData;
 import com.example.beataturczuk.fragments.R;
@@ -23,6 +24,7 @@ public class ScreenSlidePage extends FragmentActivity {
 
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
+    private MyListFragment myListFragment;
 
 
     @Override
@@ -60,7 +62,7 @@ public class ScreenSlidePage extends FragmentActivity {
             if(position==1){
                 return new JsonFragment();
             } else {
-                return new NewsFragment();
+                return new MyListFragment();
 
             }
         }

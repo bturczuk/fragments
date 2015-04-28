@@ -2,6 +2,7 @@ package com.example.beataturczuk.fragments.Helpers;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,8 +73,8 @@ public class NewsAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         View vi = convertView;
         if (convertView == null) {
-            vi = inflater.inflate(R.layout.listview, null);
-        }
+           vi = inflater.inflate(R.layout.news_layout, parent, false);
+    }
 
         TextView newsTitle = (TextView) vi.findViewById(R.id.newsTitle);
         TextView newsBody = (TextView) vi.findViewById(R.id.newsBody);

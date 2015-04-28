@@ -1,13 +1,14 @@
 package com.example.beataturczuk.fragments.Fragments;
 
 import android.app.Activity;
-import android.app.ListFragment;
+import android.support.v4.app.ListFragment;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.beataturczuk.fragments.Activities.GetNewsAsyncTask;
@@ -57,17 +58,15 @@ public class MyListFragment extends ListFragment {
         super.onActivityCreated(savedInstanceState);
 
         NewsAdapter adapter = new NewsAdapter(getActivity(), setListValues(), null);
+
         setListAdapter(adapter);
-        //setListValues().get(1);
-
-
     }
 
     private ArrayList<HashMap<String, String>> setListValues() {
         DbManage dbManage = new DbManage(getActivity());
         dbManage.open();
         news = dbManage.getNews();
-        List<News> withdrawals = dbManage.getNews();
+        List<News> news = dbManage.getNews();
         dbManage.close();
 
         ArrayList<HashMap<String, String>> items = new ArrayList<HashMap<String, String>>();
