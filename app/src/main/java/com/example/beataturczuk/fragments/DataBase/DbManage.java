@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.beataturczuk.fragments.Activities.GetNewsAsyncTask;
 import com.example.beataturczuk.fragments.DataBase.dbObjects.News;
@@ -111,9 +112,11 @@ public class DbManage {
                     mCursor.getString(8),
                     mCursor.getString(9)
             );
+
             mCursor.moveToFirst();
         }
         mCursor.close();
+        Log.d("DB News", "" + news.get(0).getTitle());
         return news;
     }
 }

@@ -5,6 +5,7 @@ import android.support.v4.app.ListFragment;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,7 +58,7 @@ public class MyListFragment extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        NewsAdapter adapter = new NewsAdapter(getActivity(), setListValues(), null);
+        NewsAdapter adapter = new NewsAdapter(getActivity(), setListValues());
 
         setListAdapter(adapter);
     }
@@ -67,6 +68,7 @@ public class MyListFragment extends ListFragment {
         dbManage.open();
         news = dbManage.getNews();
         List<News> news = dbManage.getNews();
+        Log.d("List lenth", ""+ news.size());
         dbManage.close();
 
         ArrayList<HashMap<String, String>> items = new ArrayList<HashMap<String, String>>();
@@ -77,6 +79,10 @@ public class MyListFragment extends ListFragment {
             map.put(TableNews.COLUMN_TITLE, news.get(i).getTitle());
             map.put(TableNews.COLUMN_BODY, news.get(i).getBody());
             map.put(TableNews.COLUMN_ID, news.get(i).getId());
+
+            Log.d("List item title", ""+ news.get(i).getTitle());
+            Log.d("List item body", ""+ news.get(i).getBody());
+            Log.d("List item id", ""+ news.get(i).getId());
 
             items.add(map);
         }

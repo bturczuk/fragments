@@ -8,7 +8,8 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
-
+import android.util.Log;
+import android.widget.TextView;
 
 
 import com.example.beataturczuk.fragments.Fragments.JsonFragment;
@@ -32,11 +33,20 @@ public class ScreenSlidePage extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_slide);
 
+        getNewsFromWS();
+
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
     }
+
+    private void getNewsFromWS() {
+        Log.d("getNewsFromWS","inside");
+        NewsAsyncTask newsAsyncTask = new NewsAsyncTask(this, getApplicationContext(), null);
+        newsAsyncTask.execute(CommandData.NEWS_URL_ADDRESS);
+    }
+
     @Override
     public void onBackPressed() {
         if (mPager.getCurrentItem() == 0) {

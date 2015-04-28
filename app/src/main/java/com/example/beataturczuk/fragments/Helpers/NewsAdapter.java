@@ -24,10 +24,10 @@ public class NewsAdapter extends BaseAdapter {
     private ArrayList<HashMap<String, String>> data;
     private static LayoutInflater inflater = null;
 
-    public NewsAdapter(Activity a, ArrayList<HashMap<String, String>> d, String LayoutChange) {
+    public NewsAdapter(Activity a, ArrayList<HashMap<String, String>> d) {
         mActivity = a;
         data = d;
-        inflater = (LayoutInflater) mActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        inflater = (LayoutInflater) mActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
 

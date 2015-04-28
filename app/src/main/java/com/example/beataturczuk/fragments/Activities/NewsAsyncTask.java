@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.beataturczuk.fragments.DataBase.DbHelper;
 import com.example.beataturczuk.fragments.DataBase.DbManage;
@@ -86,7 +87,7 @@ public class NewsAsyncTask extends AsyncTask<String, String, String> {
                     body = jObject.getString(ApplicationConstants.NewsConstants.BODY).toString();
 
                     nius = "TITLE:" + title + "\n NEWS: " + body + "\n PUBLISHED: " + published;
-                    Log.d("dodalem!!!!", nius);
+                    //Log.d("dodalem!!!!", nius);
 
                     ContentValues mContentValues = new ContentValues();
                     mContentValues.put(TableNews.COLUMN_TYPE, type);
@@ -101,13 +102,18 @@ public class NewsAsyncTask extends AsyncTask<String, String, String> {
 
                     mDbManage.open();
                     mDbManage.setNews(mContentValues);
-                    mTextView.setText(nius);
+
+                    if (mTextView != null){
+                        mTextView.setText(nius);
+                    }
+
                     mDbManage.close();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
+            Toast.makeText(mContext, "Dodano newsy", Toast.LENGTH_SHORT);
         } catch (JSONException e) {
             e.printStackTrace();
         }
