@@ -21,8 +21,8 @@ import java.util.List;
  */
 public class DbManage {
 
-    private  DbHelper dbHelper;
-    private  SQLiteDatabase database;
+    private DbHelper dbHelper;
+    private SQLiteDatabase database;
     private Quote quote;
     private ContentValues mContentValues;
 
@@ -116,7 +116,7 @@ public class DbManage {
             mCursor.moveToFirst();
         }
         mCursor.close();
-        Log.d("DB News", "" + news.get(0).getTitle());
+        //Log.d("DB News", "" + news.get(0).getTitle());
         return news;
     }
 }

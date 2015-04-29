@@ -10,7 +10,7 @@ public final class CommandData {
 
     //Database Strings:
     public static final String DB_NAME = "MyDBName.db";
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 4;
 
     //JSON Parser settings:
     public static final int TIMEOUT = 300;

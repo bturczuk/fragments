@@ -30,7 +30,7 @@ public class NewsFragment extends Fragment {
                              Bundle savedInstanceState) {
 
 
-        View rootView = inflater.inflate(R.layout.news, container, false);
+        View rootView = inflater.inflate(R.layout.news_layout, container, false);
 
         NewsAsyncTask newsAsyncTask = new NewsAsyncTask(mActivity, getActivity(), (TextView) rootView.findViewById(R.id.nius));
 

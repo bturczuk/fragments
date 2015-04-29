@@ -27,7 +27,7 @@ public class NewsAdapter extends BaseAdapter {
     public NewsAdapter(Activity a, ArrayList<HashMap<String, String>> d) {
         mActivity = a;
         data = d;
-//        inflater = (LayoutInflater) mActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
     }
 
 
@@ -79,10 +79,10 @@ public class NewsAdapter extends BaseAdapter {
         TextView newsTitle = (TextView) vi.findViewById(R.id.newsTitle);
         TextView newsBody = (TextView) vi.findViewById(R.id.newsBody);
 
-        HashMap<String, String> all_news = data.get(position);
+        HashMap<String, String> items = data.get(position);
 
-        newsTitle.setText(all_news.get(TableNews.COLUMN_TITLE));
-        newsBody.setText(all_news.get(TableNews.COLUMN_BODY));
+        newsTitle.setText(items.get(TableNews.COLUMN_TITLE));
+        newsBody.setText(items.get(TableNews.COLUMN_BODY));
 
 
         return vi;

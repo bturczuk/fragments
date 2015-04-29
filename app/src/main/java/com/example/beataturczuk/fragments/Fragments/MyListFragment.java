@@ -2,23 +2,16 @@ package com.example.beataturczuk.fragments.Fragments;
 
 import android.app.Activity;
 import android.support.v4.app.ListFragment;
-import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
-import android.widget.TextView;
 
-import com.example.beataturczuk.fragments.Activities.GetNewsAsyncTask;
-import com.example.beataturczuk.fragments.Activities.HttpAsyncTask;
 import com.example.beataturczuk.fragments.DataBase.DbManage;
 import com.example.beataturczuk.fragments.DataBase.dbObjects.News;
 import com.example.beataturczuk.fragments.DataBase.dbTables.TableNews;
-import com.example.beataturczuk.fragments.DataBase.dbTables.TableQuote;
-import com.example.beataturczuk.fragments.Helpers.CommandData;
 import com.example.beataturczuk.fragments.Helpers.NewsAdapter;
 import com.example.beataturczuk.fragments.R;
 
@@ -30,16 +23,53 @@ import java.util.List;
  * Created by beataturczuk on 24.04.15.
  */
 public class MyListFragment extends ListFragment {
+
+
+    private Activity mActivity;
+    private DbManage dbManage;
+    SQLiteDatabase sqLiteDatabase;
+    private List<News> all_news;
+
+
+    private ArrayList<HashMap<String, String>> setListValues() {
+        DbManage dbManage = new DbManage(getActivity());
+        dbManage.open();
+        //news = dbManage.getNews();
+        List<News> all_news = dbManage.getNews();
+
+        ArrayList<HashMap<String, String>> items = new ArrayList<HashMap<String, String>>();
+
+        for (int i = 0; i < all_news.size(); i++) {
+            HashMap<String, String> map = new HashMap<String, String>();
+
+            map.put(TableNews.COLUMN_TITLE, all_news.get(i).getTitle());
+            map.put(TableNews.COLUMN_BODY, all_news.get(i).getBody());
+            map.put(TableNews.COLUMN_ID, all_news.get(i).getId());
+
+            items.add(map);
+            Log.d("dodane ajtemsy", "" +items);
+
+            Log.d("List item title", ""+ all_news.get(i).getTitle());
+            Log.d("List item body", ""+ all_news.get(i).getBody());
+            Log.d("List item id", ""+ all_news.get(i).getId());
+
+
+            Log.d("List length", ""+ all_news.size());
+            dbManage.close();
+
+        }
+        return items;
+
+    }
+
+
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
-    private Activity mActivity;
-    private DbManage dbManage;
-    SQLiteDatabase sqLiteDatabase;
-    private String title;
-    private List<News> news;
 
 
     @Override
@@ -62,31 +92,4 @@ public class MyListFragment extends ListFragment {
 
         setListAdapter(adapter);
     }
-
-    private ArrayList<HashMap<String, String>> setListValues() {
-        DbManage dbManage = new DbManage(getActivity());
-        dbManage.open();
-        news = dbManage.getNews();
-        List<News> news = dbManage.getNews();
-        Log.d("List lenth", ""+ news.size());
-        dbManage.close();
-
-        ArrayList<HashMap<String, String>> items = new ArrayList<HashMap<String, String>>();
-
-        for (int i = 0; i < news.size(); i++) {
-            HashMap<String, String> map = new HashMap<String, String>();
-
-            map.put(TableNews.COLUMN_TITLE, news.get(i).getTitle());
-            map.put(TableNews.COLUMN_BODY, news.get(i).getBody());
-            map.put(TableNews.COLUMN_ID, news.get(i).getId());
-
-            Log.d("List item title", ""+ news.get(i).getTitle());
-            Log.d("List item body", ""+ news.get(i).getBody());
-            Log.d("List item id", ""+ news.get(i).getId());
-
-            items.add(map);
-        }
-        return items;
-    }
-
 }

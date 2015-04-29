@@ -76,18 +76,17 @@ public class NewsAsyncTask extends AsyncTask<String, String, String> {
             for (int i = 0; i < news.length(); i++) {
                 try {
                     JSONObject jObject = news.getJSONObject(i);
-                    type = jObject.getString(ApplicationConstants.NewsConstants.TYPE).toString();
-                    created = jObject.getString(ApplicationConstants.NewsConstants.CREATED).toString();
-                    published = jObject.getString(ApplicationConstants.NewsConstants.PUBLISHED).toString();
-                    comment_count = jObject.getString(ApplicationConstants.NewsConstants.COMMENT_COUNT).toString();
-                    user_id = jObject.getString(ApplicationConstants.NewsConstants.USER_ID).toString();
-                    source = jObject.getString(ApplicationConstants.NewsConstants.SOURCE).toString();
-                    image = jObject.getString(ApplicationConstants.NewsConstants.IMAGE).toString();
-                    title = jObject.getString(ApplicationConstants.NewsConstants.TITLE).toString();
-                    body = jObject.getString(ApplicationConstants.NewsConstants.BODY).toString();
+                    type = jObject.getString(ApplicationConstants.NewsConstants.TYPE);
+                    created = jObject.getString(ApplicationConstants.NewsConstants.CREATED);
+                    published = jObject.getString(ApplicationConstants.NewsConstants.PUBLISHED);
+                    comment_count = jObject.getString(ApplicationConstants.NewsConstants.COMMENT_COUNT);
+                    user_id = jObject.getString(ApplicationConstants.NewsConstants.USER_ID);
+                    source = jObject.getString(ApplicationConstants.NewsConstants.SOURCE);
+                    image = jObject.getString(ApplicationConstants.NewsConstants.IMAGE);
+                    title = jObject.getString(ApplicationConstants.NewsConstants.TITLE);
+                    body = jObject.getString(ApplicationConstants.NewsConstants.BODY);
 
                     nius = "TITLE:" + title + "\n NEWS: " + body + "\n PUBLISHED: " + published;
-                    //Log.d("dodalem!!!!", nius);
 
                     ContentValues mContentValues = new ContentValues();
                     mContentValues.put(TableNews.COLUMN_TYPE, type);
@@ -106,6 +105,7 @@ public class NewsAsyncTask extends AsyncTask<String, String, String> {
                     if (mTextView != null){
                         mTextView.setText(nius);
                     }
+                    Toast.makeText(mContext, "Dodano newsy", Toast.LENGTH_SHORT);
 
                     mDbManage.close();
 
@@ -113,7 +113,6 @@ public class NewsAsyncTask extends AsyncTask<String, String, String> {
                     e.printStackTrace();
                 }
             }
-            Toast.makeText(mContext, "Dodano newsy", Toast.LENGTH_SHORT);
         } catch (JSONException e) {
             e.printStackTrace();
         }
