@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.example.beataturczuk.fragments.Activities.GetNewsAsyncTask;
+//import com.example.beataturczuk.fragments.Activities.GetNewsAsyncTask;
 import com.example.beataturczuk.fragments.DataBase.dbObjects.News;
 import com.example.beataturczuk.fragments.DataBase.dbObjects.Quote;
 import com.example.beataturczuk.fragments.DataBase.dbTables.TableNews;
@@ -68,9 +68,10 @@ public class DbManage {
 
     public void setNews(ContentValues mContentValues) {
         try {
-            database.update(
+            database.insert(
                     TableNews.TABLE_NAME,
-                    mContentValues, null, null
+                    null,
+                    mContentValues
             );
         } catch (Exception e) {
             e.printStackTrace();
@@ -79,20 +80,21 @@ public class DbManage {
 
     public List<News> getNews() {
         List<News> news = new ArrayList<News>();
+
         Cursor mCursor = database.query(
                 TableNews.TABLE_NAME,
                 new String[]{
-                        TableNews.COLUMN_TYPE,
-                        TableNews.COLUMN_COMMENT_COUNT,
-                        TableNews.COLUMN_BODY,
-                        TableNews.COLUMN_CREATED,
-                        TableNews.COLUMN_IMAGE,
-                        TableNews.COLUMN_PUBLISHED,
-                        TableNews.COLUMN_SOURCE,
-                        TableNews.COLUMN_TITLE,
-                        TableNews.COLUMN_USER_ID,
                         TableNews.COLUMN_ID,
-                },
+                        TableNews.COLUMN_TYPE,
+                        TableNews.COLUMN_CREATED,
+                        TableNews.COLUMN_PUBLISHED,
+                        TableNews.COLUMN_COMMENT_COUNT,
+                        TableNews.COLUMN_USER_ID,
+                        TableNews.COLUMN_SOURCE,
+                        TableNews.COLUMN_IMAGE,
+                        TableNews.COLUMN_TITLE,
+                        TableNews.COLUMN_BODY
+                        },
                 null,
                 null,
                 null,
@@ -100,23 +102,25 @@ public class DbManage {
                 null
         );
         if (mCursor.moveToFirst()) {
-            new News(
-                    mCursor.getString(0),
-                    mCursor.getString(1),
-                    mCursor.getString(2),
-                    mCursor.getString(3),
-                    mCursor.getString(4),
-                    mCursor.getString(5),
-                    mCursor.getString(6),
-                    mCursor.getString(7),
-                    mCursor.getString(8),
-                    mCursor.getString(9)
-            );
-
-            mCursor.moveToFirst();
+            while (!mCursor.isAfterLast()) {
+                news.add(
+                        new News(
+                                mCursor.getString(0),
+                                mCursor.getString(1),
+                                mCursor.getString(2),
+                                mCursor.getString(3),
+                                mCursor.getString(4),
+                                mCursor.getString(5),
+                                mCursor.getString(6),
+                                mCursor.getString(7),
+                                mCursor.getString(8),
+                                mCursor.getString(9)
+                        )
+                );
+                mCursor.moveToNext();
+            };
         }
         mCursor.close();
-        //Log.d("DB News", "" + news.get(0).getTitle());
         return news;
     }
 }

@@ -27,7 +27,7 @@ public class NewsAdapter extends BaseAdapter {
     public NewsAdapter(Activity a, ArrayList<HashMap<String, String>> d) {
         mActivity = a;
         data = d;
-
+        inflater = (LayoutInflater) mActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
 
@@ -73,8 +73,8 @@ public class NewsAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         View vi = convertView;
         if (convertView == null) {
-           vi = inflater.inflate(R.layout.news_layout, parent, false);
-    }
+           vi = inflater.inflate(R.layout.news_layout, null);
+        }
 
         TextView newsTitle = (TextView) vi.findViewById(R.id.newsTitle);
         TextView newsBody = (TextView) vi.findViewById(R.id.newsBody);

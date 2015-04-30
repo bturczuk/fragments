@@ -7,9 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.example.beataturczuk.fragments.Activities.HttpAsyncTask;
-import com.example.beataturczuk.fragments.Activities.NewsAsyncTask;
+//
+//import com.example.beataturczuk.fragments.Activities.HttpAsyncTask;
+//import com.example.beataturczuk.fragments.Activities.NewsAsyncTask;
 import com.example.beataturczuk.fragments.Helpers.CommandData;
 import com.example.beataturczuk.fragments.R;
 
@@ -32,9 +32,9 @@ public class NewsFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.news_layout, container, false);
 
-        NewsAsyncTask newsAsyncTask = new NewsAsyncTask(mActivity, getActivity(), (TextView) rootView.findViewById(R.id.nius));
+//        NewsAsyncTask newsAsyncTask = new NewsAsyncTask(mActivity, getActivity(), (TextView) rootView.findViewById(R.id.nius));
 
-        newsAsyncTask.execute(CommandData.NEWS_URL_ADDRESS);
+//        newsAsyncTask.execute(CommandData.NEWS_URL_ADDRESS);
 
         return rootView;
 
