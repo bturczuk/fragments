@@ -61,20 +61,13 @@ public class MyListFragment extends ListFragment {
             map.put(TableNews.COLUMN_ID, all_news.get(i).id);
 
             items.add(map);
-            Log.d("dodane ajtemsy", "" +items);
 
-
-
-            Log.d("List length", ""+ all_news.size());
             dbManage.close();
 
         }
         return items;
 
     }
-
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -101,11 +94,10 @@ public class MyListFragment extends ListFragment {
 
         getNewsFromServer mGetNews = new getNewsFromServer();
         mGetNews.execute();
-        NewsAdapter adapter = new NewsAdapter(getActivity(), setListValues());
 
+        NewsAdapter adapter = new NewsAdapter(getActivity(), setListValues());
         setListAdapter(adapter);
     }
-
 
     public void showProgressDialog (Context mContext) {
         dialog = new ProgressDialog(mContext);
@@ -120,8 +112,7 @@ public class MyListFragment extends ListFragment {
         dialog.setContentView(R.layout.progres_dialog_layout);
     }
 
-
-    class getNewsFromServer extends AsyncTask<Void, Void, Void> {
+    class getNewsFromServer extends AsyncTask<Void, Void, Void>{
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -135,36 +126,37 @@ public class MyListFragment extends ListFragment {
 
             JsonParser jParser = new JsonParser();
             JSONObject jResponse = jParser.makeHttpRequest(CommandData.NEWS_URL_ADDRESS, "GET", null, getActivity().getApplicationContext());
-            if (jResponse != null){
-                try {
-                    success = jResponse.getInt(ApplicationConstants.ApiConstans.SUCCESS);
-                    if (success == 1){
-                        JSONArray jArray = jResponse.getJSONArray(ApplicationConstants.ApiConstans.PRODUCTS);
-                        //Rozpoczynamy ładowanie do Bazy
-                        for (int i = 0; i < jArray.length(); i++) {
-                            JSONObject jObject = jArray.getJSONObject(i);
-                            mContentValues.put(TableNews.COLUMN_TYPE, jObject.getString(ApplicationConstants.NewsConstants.TYPE));
-                            mContentValues.put(TableNews.COLUMN_CREATED, jObject.getString(ApplicationConstants.NewsConstants.CREATED));
-                            mContentValues.put(TableNews.COLUMN_PUBLISHED, jObject.getString(ApplicationConstants.NewsConstants.PUBLISHED));
-                            mContentValues.put(TableNews.COLUMN_COMMENT_COUNT, jObject.getString(ApplicationConstants.NewsConstants.COMMENT_COUNT));
-                            mContentValues.put(TableNews.COLUMN_USER_ID, jObject.getString(ApplicationConstants.NewsConstants.USER_ID));
-                            mContentValues.put(TableNews.COLUMN_SOURCE, jObject.getString(ApplicationConstants.NewsConstants.SOURCE));
-                            mContentValues.put(TableNews.COLUMN_IMAGE, jObject.getString(ApplicationConstants.NewsConstants.IMAGE));
-                            mContentValues.put(TableNews.COLUMN_TITLE, jObject.getString(ApplicationConstants.NewsConstants.TITLE));
-                            mContentValues.put(TableNews.COLUMN_BODY, jObject.getString(ApplicationConstants.NewsConstants.BODY));
 
-                            db.open();
-                            db.setNews(mContentValues);
-                            db.close();
-                        }
+                if (jResponse != null){
+                    try {
+                        success = jResponse.getInt(ApplicationConstants.ApiConstans.SUCCESS);
+                            if (success == 1){
+                                JSONArray jArray = jResponse.getJSONArray(ApplicationConstants.ApiConstans.PRODUCTS);
+                                //Rozpoczynamy ładowanie do Bazy
+                                for (int i = 0; i < jArray.length(); i++) {
+                                    JSONObject jObject = jArray.getJSONObject(i);
+                                        mContentValues.put(TableNews.COLUMN_TYPE, jObject.getString(ApplicationConstants.NewsConstants.TYPE));
+                                        mContentValues.put(TableNews.COLUMN_CREATED, jObject.getString(ApplicationConstants.NewsConstants.CREATED));
+                                        mContentValues.put(TableNews.COLUMN_PUBLISHED, jObject.getString(ApplicationConstants.NewsConstants.PUBLISHED));
+                                        mContentValues.put(TableNews.COLUMN_COMMENT_COUNT, jObject.getString(ApplicationConstants.NewsConstants.COMMENT_COUNT));
+                                        mContentValues.put(TableNews.COLUMN_USER_ID, jObject.getString(ApplicationConstants.NewsConstants.USER_ID));
+                                        mContentValues.put(TableNews.COLUMN_SOURCE, jObject.getString(ApplicationConstants.NewsConstants.SOURCE));
+                                        mContentValues.put(TableNews.COLUMN_IMAGE, jObject.getString(ApplicationConstants.NewsConstants.IMAGE));
+                                        mContentValues.put(TableNews.COLUMN_TITLE, jObject.getString(ApplicationConstants.NewsConstants.TITLE));
+                                        mContentValues.put(TableNews.COLUMN_BODY, jObject.getString(ApplicationConstants.NewsConstants.BODY));
 
-                    } else {
-                        // mamy błąd! w WEB API!
+                                            db.open();
+                                            db.setNews(mContentValues);
+                                            db.close();
+                                }
+
+                            } else {
+                                // mamy błąd! w WEB API!
+                            }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
-            }
 
             return null;
         }
@@ -177,3 +169,5 @@ public class MyListFragment extends ListFragment {
         }
     }
 }
+
+

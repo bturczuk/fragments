@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.example.beataturczuk.fragments.Activities.GetNewsAsyncTask;
+//import com.example.beataturczuk.fragments.Activities.GetNewsAsyncTask;
 import com.example.beataturczuk.fragments.DataBase.dbObjects.News;
 import com.example.beataturczuk.fragments.DataBase.dbObjects.Quote;
 import com.example.beataturczuk.fragments.DataBase.dbTables.TableNews;
@@ -88,15 +88,17 @@ public class DbManage {
                         TableNews.COLUMN_TYPE,
 
                         TableNews.COLUMN_CREATED,
-
                         TableNews.COLUMN_PUBLISHED,
                         TableNews.COLUMN_COMMENT_COUNT,
-                        TableNews.COLUMN_BODY,
-                        TableNews.COLUMN_IMAGE,
-                        TableNews.COLUMN_SOURCE,
-                        TableNews.COLUMN_TITLE,
                         TableNews.COLUMN_USER_ID,
-                },
+
+                        TableNews.COLUMN_SOURCE,
+                        TableNews.COLUMN_IMAGE,
+                        TableNews.COLUMN_TITLE,
+
+                        TableNews.COLUMN_BODY
+                        },
+
                 null,
                 null,
                 null,
@@ -123,7 +125,6 @@ public class DbManage {
             };
         }
         mCursor.close();
-        //Log.d("DB News", "" + news.get(0).getTitle());
         return news;
     }
 }

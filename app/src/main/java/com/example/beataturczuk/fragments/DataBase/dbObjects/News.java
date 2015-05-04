@@ -5,7 +5,6 @@ package com.example.beataturczuk.fragments.DataBase.dbObjects;
  */
 public class News {
 
-
     public String id;
     public String type;
     public String created;

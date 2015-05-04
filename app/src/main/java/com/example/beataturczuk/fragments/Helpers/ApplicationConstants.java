@@ -5,13 +5,18 @@ package com.example.beataturczuk.fragments.Helpers;
  */
 public class ApplicationConstants {
 
+    public static class ApiConstans{
+        public static final String SUCCESS = "success";
+        public static final String PRODUCTS = "products";
+    }
+
     public abstract class ApiQuoteKeys {
         public static final String AUTHOR = "author";
-        public static final String PRODUCTS = "products";
+//        public static final String PRODUCTS = "products";
         public static final String BODY = "body";
     }
     public class NewsConstants {
-        public static final String PRODUCTS = "products";
+//        public static final String PRODUCTS = "products";
         public static final String NEWS_ID = "id";
         public static final String TYPE = "type";
         public static final String CREATED = "created";
@@ -23,10 +28,4 @@ public class ApplicationConstants {
         public static final String TITLE = "title";
         public static final String BODY = "body";
     }
-
-    public static class ApiConstans{
-        public static final String SUCCESS = "success";
-        public static final String PRODUCTS = "products";
-          }
-
 }

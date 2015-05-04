@@ -33,7 +33,8 @@ public class ScreenSlidePage extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_slide);
 
-        //getNewsFromWS();
+//        getNewsFromWS();
+
 
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.pager);
@@ -41,11 +42,12 @@ public class ScreenSlidePage extends FragmentActivity {
         mPager.setAdapter(mPagerAdapter);
     }
 
-   // private void getNewsFromWS() {
-       // Log.d("getNewsFromWS","inside");
-       // NewsAsyncTask newsAsyncTask = new NewsAsyncTask(this, getApplicationContext(), null);
-        //newsAsyncTask.execute(CommandData.NEWS_URL_ADDRESS);
-    //}
+//    private void getNewsFromWS() {
+//        Log.d("getNewsFromWS","inside");
+//        NewsAsyncTask newsAsyncTask = new NewsAsyncTask(this, getApplicationContext(), null);
+//        newsAsyncTask.execute(CommandData.NEWS_URL_ADDRESS);
+//    }
+
 
     @Override
     public void onBackPressed() {

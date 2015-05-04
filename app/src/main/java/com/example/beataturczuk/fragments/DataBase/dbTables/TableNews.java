@@ -102,41 +102,4 @@ public class TableNews {
 
     }
 
-   /** public List<String> getList() {
-        List<String> news = new ArrayList<String>();
-        Cursor cursor = database.query(
-                TableNews.TABLE_NAME,
-                new String[]{
-                        TableNews.COLUMN_TYPE,
-                        TableNews.COLUMN_COMMENT_COUNT,
-                        TableNews.COLUMN_BODY,
-                        TableNews.COLUMN_CREATED,
-                        TableNews.COLUMN_IMAGE,
-                        TableNews.COLUMN_PUBLISHED,
-                        TableNews.COLUMN_SOURCE,
-                        TableNews.COLUMN_TITLE,
-                        TableNews.COLUMN_USER_ID,
-                        TableNews.COLUMN_IMAGE
-                }, TableNews.COLUMN_ID + "=?",
-                new String[]{},
-                null,
-                null,
-                null
-        );
-        if (cursor.moveToFirst()) {
-            while (!cursor.isAfterLast()) {
-                news.add(
-                        new String(
-                                cursor.getString(0)
-                        )
-                );
-                cursor.moveToNext();
-            }
-
-        }
-        cursor.close();
-        return news;
-    }
-
-   **/
 }
