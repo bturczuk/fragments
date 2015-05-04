@@ -25,6 +25,7 @@ import java.util.TreeSet;
 /**
  * Created by beataturczuk on 22.04.15.
  */
+/**
 public class NewsAsyncTask extends AsyncTask<String, String, String> {
 
     public NewsAsyncTask(Activity activity, Context context, TextView textView) {
@@ -50,7 +51,7 @@ public class NewsAsyncTask extends AsyncTask<String, String, String> {
 
     @Override
     protected String doInBackground(String... urls) {
-        return JsonParser.httpGetRequest(CommandData.NEWS_URL_ADDRESS);
+       // return JsonParser.httpGetRequest(CommandData.NEWS_URL_ADDRESS);
     }
 
     @Override
@@ -118,3 +119,4 @@ public class NewsAsyncTask extends AsyncTask<String, String, String> {
         }
     }
 }
+**/

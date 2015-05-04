@@ -1,6 +1,10 @@
 package com.example.beataturczuk.fragments.Fragments;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.ContentValues;
+import android.content.Context;
+import android.os.AsyncTask;
 import android.support.v4.app.ListFragment;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -8,12 +12,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.beataturczuk.fragments.DataBase.DbManage;
 import com.example.beataturczuk.fragments.DataBase.dbObjects.News;
 import com.example.beataturczuk.fragments.DataBase.dbTables.TableNews;
+import com.example.beataturczuk.fragments.Helpers.ApplicationConstants;
+import com.example.beataturczuk.fragments.Helpers.CommandData;
 import com.example.beataturczuk.fragments.Helpers.NewsAdapter;
+import com.example.beataturczuk.fragments.Internet.JsonParser;
 import com.example.beataturczuk.fragments.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,6 +41,8 @@ public class MyListFragment extends ListFragment {
     private DbManage dbManage;
     SQLiteDatabase sqLiteDatabase;
     private List<News> all_news;
+    ProgressDialog dialog;
+    int success;
 
 
     private ArrayList<HashMap<String, String>> setListValues() {
@@ -42,16 +56,13 @@ public class MyListFragment extends ListFragment {
         for (int i = 0; i < all_news.size(); i++) {
             HashMap<String, String> map = new HashMap<String, String>();
 
-            map.put(TableNews.COLUMN_TITLE, all_news.get(i).getTitle());
-            map.put(TableNews.COLUMN_BODY, all_news.get(i).getBody());
-            map.put(TableNews.COLUMN_ID, all_news.get(i).getId());
+            map.put(TableNews.COLUMN_TITLE, all_news.get(i).title);
+            map.put(TableNews.COLUMN_BODY, all_news.get(i).body);
+            map.put(TableNews.COLUMN_ID, all_news.get(i).id);
 
             items.add(map);
             Log.d("dodane ajtemsy", "" +items);
 
-            Log.d("List item title", ""+ all_news.get(i).getTitle());
-            Log.d("List item body", ""+ all_news.get(i).getBody());
-            Log.d("List item id", ""+ all_news.get(i).getId());
 
 
             Log.d("List length", ""+ all_news.size());
@@ -88,8 +99,81 @@ public class MyListFragment extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        getNewsFromServer mGetNews = new getNewsFromServer();
+        mGetNews.execute();
         NewsAdapter adapter = new NewsAdapter(getActivity(), setListValues());
 
         setListAdapter(adapter);
+    }
+
+
+    public void showProgressDialog (Context mContext) {
+        dialog = new ProgressDialog(mContext);
+
+        if (dialog.isShowing()){
+            dialog.dismiss();
+            dialog.cancel();
+        }else{
+            dialog.show();
+        }
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.progres_dialog_layout);
+    }
+
+
+    class getNewsFromServer extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            showProgressDialog(getActivity());
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            ContentValues mContentValues = new ContentValues();
+            DbManage db = new DbManage(getActivity());
+
+            JsonParser jParser = new JsonParser();
+            JSONObject jResponse = jParser.makeHttpRequest(CommandData.NEWS_URL_ADDRESS, "GET", null, getActivity().getApplicationContext());
+            if (jResponse != null){
+                try {
+                    success = jResponse.getInt(ApplicationConstants.ApiConstans.SUCCESS);
+                    if (success == 1){
+                        JSONArray jArray = jResponse.getJSONArray(ApplicationConstants.ApiConstans.PRODUCTS);
+                        //Rozpoczynamy ładowanie do Bazy
+                        for (int i = 0; i < jArray.length(); i++) {
+                            JSONObject jObject = jArray.getJSONObject(i);
+                            mContentValues.put(TableNews.COLUMN_TYPE, jObject.getString(ApplicationConstants.NewsConstants.TYPE));
+                            mContentValues.put(TableNews.COLUMN_CREATED, jObject.getString(ApplicationConstants.NewsConstants.CREATED));
+                            mContentValues.put(TableNews.COLUMN_PUBLISHED, jObject.getString(ApplicationConstants.NewsConstants.PUBLISHED));
+                            mContentValues.put(TableNews.COLUMN_COMMENT_COUNT, jObject.getString(ApplicationConstants.NewsConstants.COMMENT_COUNT));
+                            mContentValues.put(TableNews.COLUMN_USER_ID, jObject.getString(ApplicationConstants.NewsConstants.USER_ID));
+                            mContentValues.put(TableNews.COLUMN_SOURCE, jObject.getString(ApplicationConstants.NewsConstants.SOURCE));
+                            mContentValues.put(TableNews.COLUMN_IMAGE, jObject.getString(ApplicationConstants.NewsConstants.IMAGE));
+                            mContentValues.put(TableNews.COLUMN_TITLE, jObject.getString(ApplicationConstants.NewsConstants.TITLE));
+                            mContentValues.put(TableNews.COLUMN_BODY, jObject.getString(ApplicationConstants.NewsConstants.BODY));
+
+                            db.open();
+                            db.setNews(mContentValues);
+                            db.close();
+                        }
+
+                    } else {
+                        // mamy błąd! w WEB API!
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            Toast.makeText(getActivity(), "Pobrano dane!", Toast.LENGTH_SHORT);
+            dialog.dismiss();
+        }
     }
 }

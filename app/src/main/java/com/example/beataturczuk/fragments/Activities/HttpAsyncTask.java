@@ -1,4 +1,4 @@
-package com.example.beataturczuk.fragments.Activities;
+/** package com.example.beataturczuk.fragments.Activities;
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -23,6 +23,7 @@ import java.sql.SQLException;
 /**
  * Created by beataturczuk on 18.03.15.
  */
+/**
 public class HttpAsyncTask extends AsyncTask<String, String, String> {
 
 
@@ -85,3 +86,4 @@ public class HttpAsyncTask extends AsyncTask<String, String, String> {
         }
     }
 }
+**/

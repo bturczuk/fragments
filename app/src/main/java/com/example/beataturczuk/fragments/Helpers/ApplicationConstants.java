@@ -24,4 +24,9 @@ public class ApplicationConstants {
         public static final String BODY = "body";
     }
 
+    public static class ApiConstans{
+        public static final String SUCCESS = "success";
+        public static final String PRODUCTS = "products";
+          }
+
 }

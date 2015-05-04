@@ -102,7 +102,7 @@ public class TableNews {
 
     }
 
-    public List<String> getList() {
+   /** public List<String> getList() {
         List<String> news = new ArrayList<String>();
         Cursor cursor = database.query(
                 TableNews.TABLE_NAME,
@@ -137,4 +137,6 @@ public class TableNews {
         cursor.close();
         return news;
     }
+
+   **/
 }
