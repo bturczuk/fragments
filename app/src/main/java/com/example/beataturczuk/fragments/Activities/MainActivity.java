@@ -2,8 +2,7 @@ package com.example.beataturczuk.fragments.Activities;
 
 import android.app.Activity;
 import android.os.Bundle;
-
-
+import android.widget.ListView;
 
 
 import com.example.beataturczuk.fragments.DataBase.DbHelper;
@@ -20,7 +19,6 @@ public class MainActivity extends Activity {
     private DbHelper mMydb;
     private DbManage mDbManage;
     ScreenSlidePage slidePagerActivity;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

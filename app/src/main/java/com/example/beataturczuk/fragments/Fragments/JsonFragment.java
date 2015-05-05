@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-
 //import com.example.beataturczuk.fragments.Activities.HttpAsyncTask;
 import com.example.beataturczuk.fragments.Helpers.CommandData;
 
@@ -37,10 +36,9 @@ public class JsonFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment, container, false);
 
-
-//        HttpAsyncTask httpAsyncTask = new HttpAsyncTask(mActivity, getActivity(), (TextView) rootView.findViewById(R.id.etResponse));
+//   HttpAsyncTask httpAsyncTask = new HttpAsyncTask(mActivity, getActivity(), (TextView) rootView.findViewById(R.id.etResponse));
 //
-//        httpAsyncTask.execute(CommandData.URL_ADDRESS);
+//       httpAsyncTask.execute(CommandData.URL_ADDRESS);
 
 
         return rootView;

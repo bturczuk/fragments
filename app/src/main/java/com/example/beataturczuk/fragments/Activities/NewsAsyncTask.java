@@ -106,17 +106,17 @@
 //                    if (mTextView != null){
 //                        mTextView.setText(nius);
 //                    }
+
+ //                  Toast.makeText(mContext, "Dodano newsy", Toast.LENGTH_SHORT);
 //
-//                    Toast.makeText(mContext, "Dodano newsy", Toast.LENGTH_SHORT);
+//                   mDbManage.close();
 //
-//                    mDbManage.close();
-//
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//            }
+//               } catch (JSONException e) {
+//                  e.printStackTrace();
+//               }
+//           }
 //        } catch (JSONException e) {
-//            e.printStackTrace();
+//           e.printStackTrace();
 //        }
 //    }
 //}

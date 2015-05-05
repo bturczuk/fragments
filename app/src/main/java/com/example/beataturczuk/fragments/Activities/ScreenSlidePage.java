@@ -1,5 +1,6 @@
 package com.example.beataturczuk.fragments.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.SyncStateContract;
 import android.support.v4.app.FragmentActivity;
@@ -9,9 +10,14 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 
+import com.example.beataturczuk.fragments.Fragments.FirstFragment;
 import com.example.beataturczuk.fragments.Fragments.JsonFragment;
 import com.example.beataturczuk.fragments.Fragments.MyListFragment;
 import com.example.beataturczuk.fragments.Fragments.NewsFragment;
@@ -23,6 +29,7 @@ import com.example.beataturczuk.fragments.R;
  */
 public class ScreenSlidePage extends FragmentActivity {
 
+    private ListView mListView;
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
     private MyListFragment myListFragment;
@@ -40,6 +47,9 @@ public class ScreenSlidePage extends FragmentActivity {
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
+
+        //mListView = (ListView) findViewById(R.id.list);
+       // mListView.setOnItemClickListener(onListClick);
     }
 
 //    private void getNewsFromWS() {
@@ -48,6 +58,11 @@ public class ScreenSlidePage extends FragmentActivity {
 //        newsAsyncTask.execute(CommandData.NEWS_URL_ADDRESS);
 //    }
 
+    //private AdapterView.OnItemClickListener onListClick = new AdapterView.OnItemLongClickListener() {
+   //     public void onItemClick(AdapterView<?> parent
+                //                View view, int position
+                         //       long id) {
+    //}
 
     @Override
     public void onBackPressed() {
@@ -72,7 +87,7 @@ public class ScreenSlidePage extends FragmentActivity {
         @Override
         public Fragment getItem(int position) {
             if(position==1){
-                return new JsonFragment();
+                return new FirstFragment();
             } else {
                 return new MyListFragment();
 
@@ -84,5 +99,4 @@ public class ScreenSlidePage extends FragmentActivity {
             return CommandData.NUM_PAGES;
         }
     }
-
 }

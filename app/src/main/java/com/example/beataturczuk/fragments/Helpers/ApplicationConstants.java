@@ -12,11 +12,11 @@ public class ApplicationConstants {
 
     public abstract class ApiQuoteKeys {
         public static final String AUTHOR = "author";
-//        public static final String PRODUCTS = "products";
+        public static final String PRODUCTS = "products";
         public static final String BODY = "body";
     }
     public class NewsConstants {
-//        public static final String PRODUCTS = "products";
+        public static final String PRODUCTS = "products";
         public static final String NEWS_ID = "id";
         public static final String TYPE = "type";
         public static final String CREATED = "created";

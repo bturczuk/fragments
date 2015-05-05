@@ -5,12 +5,18 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.TextView;
 
 //import com.example.beataturczuk.fragments.Activities.GetNewsAsyncTask;
 import com.example.beataturczuk.fragments.DataBase.dbObjects.News;
 import com.example.beataturczuk.fragments.DataBase.dbObjects.Quote;
 import com.example.beataturczuk.fragments.DataBase.dbTables.TableNews;
 import com.example.beataturczuk.fragments.DataBase.dbTables.TableQuote;
+import com.example.beataturczuk.fragments.Helpers.ApplicationConstants;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -24,8 +30,9 @@ public class DbManage {
     private DbHelper dbHelper;
     private SQLiteDatabase database;
     private Quote quote;
+    private TextView mTextView;
     private ContentValues mContentValues;
-
+    private DbManage mDbManage;
     private Context context;
     private String newsForList;
 
@@ -70,6 +77,18 @@ public class DbManage {
         try {
             database.insert(
                     TableNews.TABLE_NAME,
+                    null,
+                    mContentValues
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setFirstNews(ContentValues mContentValues) {
+        try {
+            database.insert(
+                    TableQuote.TABLE_NAME,
                     null,
                     mContentValues
             );
@@ -126,5 +145,35 @@ public class DbManage {
         }
         mCursor.close();
         return news;
+    }
+
+    public void getFirstNews(String result) {
+
+        try {
+            JSONObject json = new JSONObject(result);
+            JSONArray articles = json.getJSONArray(ApplicationConstants.ApiQuoteKeys.PRODUCTS);
+
+            String str;
+            String body;
+            String author;
+
+
+            for (int i = 0; i < articles.length(); i++) {
+                try {
+                   JSONObject jObject = articles.getJSONObject(i);
+                    body = jObject.getString(ApplicationConstants.ApiQuoteKeys.BODY).toString();
+                    author = jObject.getString(ApplicationConstants.ApiQuoteKeys.AUTHOR).toString();
+                    str = "MESSAGE: " + body + "\n\nAUTHOR: " + author;
+
+                    mDbManage.open();
+                    mTextView.setText(str);
+                  mDbManage.close();
+               } catch (JSONException e) {
+                   e.printStackTrace();
+                }
+            }
+        } catch (JSONException e) {
+           e.printStackTrace();
+        }
     }
 }

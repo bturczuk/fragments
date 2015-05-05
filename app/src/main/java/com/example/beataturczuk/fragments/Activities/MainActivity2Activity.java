@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.ListView;
 
 import com.example.beataturczuk.fragments.R;
 
@@ -64,4 +65,5 @@ public class MainActivity2Activity extends ActionBarActivity {
             return rootView;
         }
     }
+
 }

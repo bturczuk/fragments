@@ -1,10 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-       xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="10px"
-    android:layout_width="10px"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_height="10px"
+        android:layout_width="10px"
         tools:context="com.example.beataturczuk.fragments.Activities.MainActivity2Activity">
-        <item android:id="@+id/action_settings" android:title="@string/action_settings"
-          android:orderInCategory="100"
+
+    <item android:id="@+id/action_settings"
+            android:title="@string/action_settings"
+            android:orderInCategory="100"
             android:showAsAction="never" />
 </menu>
