@@ -75,7 +75,6 @@ public class NewsAdapter extends BaseAdapter {
         View vi = convertView;
         if (convertView == null) {
            vi = inflater.inflate(R.layout.news_layout, null);
-
         }
 
         TextView newsTitle = (TextView) vi.findViewById(R.id.newsTitle);
@@ -89,4 +88,5 @@ public class NewsAdapter extends BaseAdapter {
 
         return vi;
     }
+
 }

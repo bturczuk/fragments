@@ -3,5 +3,5 @@
     android:layout_height="match_parent"
     android:padding="6dip"
     android:background="#FAF0E6"
-    android:id="@+id/list"
+    android:id="@android:id/list"
     />

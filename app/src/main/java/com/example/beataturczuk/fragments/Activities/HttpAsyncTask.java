@@ -1,4 +1,4 @@
-
+//
 //package com.example.beataturczuk.fragments.Activities;
 //
 //import android.app.Activity;
@@ -22,8 +22,8 @@
 //
 //
 ///**
-// * Created by beataturczuk on 18.03.15.
-// */
+//* Created by beataturczuk on 18.03.15.
+//*/
 //public class HttpAsyncTask extends AsyncTask<String, String, String> {
 //
 //
@@ -50,7 +50,7 @@
 //    }
 //
 //    @Override
-//    protected String doInBackground(String... urls) {
+//         protected String doInBackground(String... urls) {
 //        return JsonParser.httpGetRequest(CommandData.URL_ADDRESS);
 //    }
 //

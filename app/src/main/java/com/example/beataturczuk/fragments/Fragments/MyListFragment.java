@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.support.v4.app.ListFragment;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,11 +14,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.beataturczuk.fragments.Activities.OneNews;
+import com.example.beataturczuk.fragments.DataBase.DbHelper;
 import com.example.beataturczuk.fragments.DataBase.DbManage;
 import com.example.beataturczuk.fragments.DataBase.dbObjects.News;
+import com.example.beataturczuk.fragments.DataBase.dbObjects.Quote;
 import com.example.beataturczuk.fragments.DataBase.dbTables.TableNews;
 import com.example.beataturczuk.fragments.Helpers.ApplicationConstants;
 import com.example.beataturczuk.fragments.Helpers.CommandData;
@@ -37,6 +43,8 @@ import java.util.List;
  */
 public class MyListFragment extends ListFragment {
 
+    public ArrayList<HashMap<String, String>> items = new ArrayList<HashMap<String, String>>();
+    public static final String KEY_NEWS_ID = "news_id";
 
     private Activity mActivity;
     private DbManage dbManage;
@@ -51,8 +59,6 @@ public class MyListFragment extends ListFragment {
         dbManage.open();
         //news = dbManage.getNews();
         List<News> all_news = dbManage.getNews();
-
-        ArrayList<HashMap<String, String>> items = new ArrayList<HashMap<String, String>>();
 
         for (int i = 0; i < all_news.size(); i++) {
             HashMap<String, String> map = new HashMap<String, String>();
@@ -70,11 +76,25 @@ public class MyListFragment extends ListFragment {
 
     }
 
-//    @Override
-//    public void onListItemClick(ListView l, View v, int position, long id) {
-//        super.onListItemClick(l, v, position, id);
-//        Toast.makeText(getActivity(), position, Toast.LENGTH_SHORT );
-//    }
+   @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+       super.onListItemClick(l, v, position, id);
+
+       l.getItemAtPosition(position).toString();
+       l.getAdapter().getItem(position).toString();
+//     it.get(position).toString();
+       items.get(position).toString();
+
+
+       Intent intent = new Intent(getActivity(), OneNews.class);
+       intent.putExtra(KEY_NEWS_ID, setListValues().get(position));
+       //intent.putExtra(KEY_NEWS_ID, items.get(position));
+       startActivity(intent);
+
+
+//       String pos = o.toString();
+//       Toast.makeText(getActivity(), "You have choosen the news with id number " + " " + pos , Toast.LENGTH_LONG).show();
+   }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

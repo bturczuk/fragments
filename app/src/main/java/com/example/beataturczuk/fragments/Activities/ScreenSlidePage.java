@@ -40,29 +40,14 @@ public class ScreenSlidePage extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_slide);
 
-//        getNewsFromWS();
-
-
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
 
-        //mListView = (ListView) findViewById(R.id.list);
-       // mListView.setOnItemClickListener(onListClick);
+
     }
 
-//    private void getNewsFromWS() {
-//        Log.d("getNewsFromWS","inside");
-//        NewsAsyncTask newsAsyncTask = new NewsAsyncTask(this, getApplicationContext(), null);
-//        newsAsyncTask.execute(CommandData.NEWS_URL_ADDRESS);
-//    }
-
-    //private AdapterView.OnItemClickListener onListClick = new AdapterView.OnItemLongClickListener() {
-   //     public void onItemClick(AdapterView<?> parent
-                //                View view, int position
-                         //       long id) {
-    //}
 
     @Override
     public void onBackPressed() {

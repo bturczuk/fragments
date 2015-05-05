@@ -23,27 +23,27 @@ public class GetNewsAsyncTask extends AsyncTask <String, String, String> {
 
 
    public GetNewsAsyncTask(Activity activity, Context context, TextView textView) {
-        this.mActivity = activity;
-       this.mTextView = textView;
-        this.mContext = context;
-        mMydb = new DbHelper(context);
-       mDbManage = new DbManage(context);
-        mContentValues = new ContentValues();
+           this.mActivity = activity;
+           this.mTextView = textView;
+           this.mContext = context;
+           mMydb = new DbHelper(context);
+           mDbManage = new DbManage(context);
+           mContentValues = new ContentValues();
 
-    }
+   }
 
    private TableQuote mTableQuote;
-    private Activity mActivity;
-    private DbHelper mMydb;
-    private TextView mTextView;
-    private Context mContext;
+   private Activity mActivity;
+   private DbHelper mMydb;
+   private TextView mTextView;
+   private Context mContext;
    private DbManage mDbManage;
-    private ContentValues mContentValues;
+   private ContentValues mContentValues;
 
-                    @Override
-                    protected void onPreExecute() {
-                        CommandData.networkConnection(mContext, mActivity);
-                    }
+           @Override
+               protected void onPreExecute() {
+               CommandData.networkConnection(mContext, mActivity);
+           }
 
 
                     @Override
@@ -88,7 +88,6 @@ public class GetNewsAsyncTask extends AsyncTask <String, String, String> {
                     mContentValues.put(TableNews.COLUMN_IMAGE, image);
                     mContentValues.put(TableNews.COLUMN_TITLE, title);
                     mContentValues.put(TableNews.COLUMN_BODY, body);
-
 
                } catch (JSONException e) {
                    e.printStackTrace();
