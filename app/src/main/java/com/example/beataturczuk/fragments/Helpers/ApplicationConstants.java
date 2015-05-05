@@ -17,7 +17,7 @@ public class ApplicationConstants {
     }
     public class NewsConstants {
         public static final String PRODUCTS = "products";
-        public static final String NEWS_ID = "id";
+        public static final String NEWS_ID = "column_id";
         public static final String TYPE = "type";
         public static final String CREATED = "created";
         public static final String PUBLISHED = "published";

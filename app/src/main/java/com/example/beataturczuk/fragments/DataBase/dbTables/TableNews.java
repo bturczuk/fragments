@@ -35,7 +35,7 @@ public class TableNews {
 
 
     public static final String TABLE_NAME = "news";
-    public static final String COLUMN_ID = "column_id"; // (z podkresleniem nazywamy id w bazie, bez podkreslenia id zewnetrzne)
+   public static final String COLUMN_ID = "column_id"; // (z podkresleniem nazywamy id w bazie, bez podkreslenia id zewnetrzne)
     public static final String COLUMN_TYPE = "type";
     public static final String COLUMN_CREATED = "created";
     public static final String COLUMN_PUBLISHED = "published";
@@ -98,8 +98,4 @@ public class TableNews {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
-    public static void insert(SQLiteDatabase db) {
-
-    }
-
 }

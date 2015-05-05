@@ -17,7 +17,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 
-import com.example.beataturczuk.fragments.Fragments.FirstFragment;
 import com.example.beataturczuk.fragments.Fragments.JsonFragment;
 import com.example.beataturczuk.fragments.Fragments.MyListFragment;
 import com.example.beataturczuk.fragments.Fragments.NewsFragment;
@@ -72,7 +71,7 @@ public class ScreenSlidePage extends FragmentActivity {
         @Override
         public Fragment getItem(int position) {
             if(position==1){
-                return new FirstFragment();
+                return new JsonFragment();
             } else {
                 return new MyListFragment();
 

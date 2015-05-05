@@ -4,7 +4,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
 <TextView
             android:id="@+id/news_body"
             android:layout_width="fill_parent"
@@ -12,13 +15,19 @@
             android:textSize="13sp"
             android:background="#FFFAF0"
 />
+</ScrollView>
 
-<TextView
-        android:id="@+id/news_title"
+
+<ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="243dp"
-        android:textSize="80sp"
-        android:textStyle="bold"
-        android:background="#CC3399"
-/>
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+       <TextView
+             android:id="@+id/news_title"
+             android:layout_width="fill_parent"
+             android:layout_height="243dp"
+             android:textSize="20sp"
+             android:background="#FFFAF0"/>
+</ScrollView>
+
 </LinearLayout>

@@ -45,6 +45,7 @@ public class MyListFragment extends ListFragment {
 
     public ArrayList<HashMap<String, String>> items = new ArrayList<HashMap<String, String>>();
     public static final String KEY_NEWS_ID = "news_id";
+    public static final String TITLE_NEWS = "title_news";
 
     private Activity mActivity;
     private DbManage dbManage;
@@ -65,7 +66,7 @@ public class MyListFragment extends ListFragment {
 
             map.put(TableNews.COLUMN_TITLE, all_news.get(i).title);
             map.put(TableNews.COLUMN_BODY, all_news.get(i).body);
-            map.put(TableNews.COLUMN_ID, all_news.get(i).id);
+            map.put(TableNews.COLUMN_ID, all_news.get(i).column_id);
 
             items.add(map);
 
@@ -82,18 +83,14 @@ public class MyListFragment extends ListFragment {
 
        l.getItemAtPosition(position).toString();
        l.getAdapter().getItem(position).toString();
-//     it.get(position).toString();
+
        items.get(position).toString();
 
-
        Intent intent = new Intent(getActivity(), OneNews.class);
-       intent.putExtra(KEY_NEWS_ID, setListValues().get(position));
-       //intent.putExtra(KEY_NEWS_ID, items.get(position));
+
+       intent.putExtra(KEY_NEWS_ID, items.get(position).toString());
+
        startActivity(intent);
-
-
-//       String pos = o.toString();
-//       Toast.makeText(getActivity(), "You have choosen the news with id number " + " " + pos , Toast.LENGTH_LONG).show();
    }
 
     @Override

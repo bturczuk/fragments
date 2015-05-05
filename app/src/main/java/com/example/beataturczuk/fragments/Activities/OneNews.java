@@ -2,6 +2,9 @@ package com.example.beataturczuk.fragments.Activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,15 +18,20 @@ import com.example.beataturczuk.fragments.R;
  */
 public class OneNews extends Activity {
 
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.one_news);
 
 
         TextView mTitle = (TextView) findViewById(R.id.news_title);
+        //TextView mBody = (TextView) findViewById(R.id.news_body);
 
         String mId = getIntent().getStringExtra(MyListFragment.KEY_NEWS_ID);
-        Toast.makeText(this, mId, Toast.LENGTH_SHORT);
-        mTitle.setText(mId);
+
+        Toast.makeText(this, mId, Toast.LENGTH_SHORT).toString();
+        //Toast.makeText(this, title, Toast.LENGTH_SHORT).toString();
+       mTitle.setText(getIntent().getStringExtra(MyListFragment.KEY_NEWS_ID));
+       //mBody.setText(getIntent().getStringExtra(MyListFragment.TITLE_NEWS));
     }
 }

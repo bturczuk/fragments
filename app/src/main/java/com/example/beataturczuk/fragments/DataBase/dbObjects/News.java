@@ -5,7 +5,7 @@ package com.example.beataturczuk.fragments.DataBase.dbObjects;
  */
 public class News {
 
-    public String id;
+    public String column_id;
     public String type;
     public String created;
     public String published;
@@ -19,7 +19,7 @@ public class News {
     public News(String i, String t, String c, String p,
                 String cc, String u, String s, String im, String tit, String b) {
 
-        this.id = i;
+        this.column_id = i;
         this.type = t;
         this.created = c;
         this.published = p;
