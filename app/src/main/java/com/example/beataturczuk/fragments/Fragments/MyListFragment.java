@@ -81,15 +81,10 @@ public class MyListFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
        super.onListItemClick(l, v, position, id);
 
-       l.getItemAtPosition(position).toString();
-       l.getAdapter().getItem(position).toString();
-
-       items.get(position).toString();
+       items.get(position).get(TableNews.COLUMN_ID); // Tyle wystarczy :D
 
        Intent intent = new Intent(getActivity(), OneNews.class);
-
-       intent.putExtra(KEY_NEWS_ID, items.get(position).toString());
-
+       intent.putExtra(KEY_NEWS_ID, items.get(position).get(TableNews.COLUMN_ID));
        startActivity(intent);
    }
 

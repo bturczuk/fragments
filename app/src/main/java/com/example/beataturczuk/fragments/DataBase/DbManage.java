@@ -176,4 +176,53 @@ public class DbManage {
            e.printStackTrace();
         }
     }
+
+    public List<News> getOneNews(String id) {
+        List<News> news = new ArrayList<News>();
+
+        Cursor mCursor = database.query(
+                TableNews.TABLE_NAME,
+                new String[]{
+                        TableNews.COLUMN_ID,
+                        TableNews.COLUMN_TYPE,
+
+                        TableNews.COLUMN_CREATED,
+                        TableNews.COLUMN_PUBLISHED,
+                        TableNews.COLUMN_COMMENT_COUNT,
+                        TableNews.COLUMN_USER_ID,
+
+                        TableNews.COLUMN_SOURCE,
+                        TableNews.COLUMN_IMAGE,
+                        TableNews.COLUMN_TITLE,
+
+                        TableNews.COLUMN_BODY
+                },
+                new String(TableNews.COLUMN_ID + "=" + id),
+                null,
+                null,
+                null,
+                null
+        );
+        if (mCursor.moveToFirst()) {
+            while (!mCursor.isAfterLast()) {
+                news.add(
+                        new News(
+                                mCursor.getString(0),
+                                mCursor.getString(1),
+                                mCursor.getString(2),
+                                mCursor.getString(3),
+                                mCursor.getString(4),
+                                mCursor.getString(5),
+                                mCursor.getString(6),
+                                mCursor.getString(7),
+                                mCursor.getString(8),
+                                mCursor.getString(9)
+                        )
+                );
+                mCursor.moveToNext();
+            };
+        }
+        mCursor.close();
+        return news;
+    }
 }
